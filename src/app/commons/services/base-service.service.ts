@@ -52,86 +52,86 @@ export class BaseServiceService {
 
 
   // metodo especifio para cadastro cliente
-  getNoAlert(parameters: string) {
-    if (!this.checkNetwork()) {
-      this.common.showToast("Sem conexão!");
-    } else {
-      return new Promise((resolve, reject) => {
-        let Headers = new HttpHeaders();
-        // headers
-        Headers.append("x-auth-token", localStorage.getItem("token"));
-        let options = new HttpRequest({ headers: Headers, reportProgress: true });
-        let result = this.http
-          .get(parameters, options)
-          .subscribe(
-            (result: any) => {
-              resolve(result);
-            },
-            error => {
-              reject(error);
-              try {
-                this.common.loading.dismiss();
-              } catch (err) { }
-            }
-          );
-      });
-    }
-  }
+  // getNoAlert(parameters: string) {
+  //   if (!this.checkNetwork()) {
+  //     this.common.showToast("Sem conexão!");
+  //   } else {
+  //     return new Promise((resolve, reject) => {
+  //       let Headers = new HttpHeaders();
+  //       // headers
+  //       Headers.append("x-auth-token", localStorage.getItem("token"));
+  //       let options = new HttpRequest({ headers: Headers, reportProgress: true });
+  //       let result = this.http
+  //         .get(parameters, options)
+  //         .subscribe(
+  //           (result: any) => {
+  //             resolve(result);
+  //           },
+  //           error => {
+  //             reject(error);
+  //             try {
+  //               this.common.loading.dismiss();
+  //             } catch (err) { }
+  //           }
+  //         );
+  //     });
+  //   }
+  // }
 
 
-  get(parameters: string) {
-    if (!this.checkNetwork()) {
-      this.common.showToast("Sem conexão!");
-    } else {
-      return new Promise((resolve, reject) => {
-        let headers = new HttpHeaders();
-        // headers
-        // headers.append('Cache-Control', 'no-store');
-        headers.append("x-auth-token", localStorage.getItem("token"));
-        let options = new HttpRequest({ headers: headers });
-        let result = this.http
-          .get(parameters, options)
-          .subscribe(
-            (result: any) => {
-              resolve(result);
-            },
-            error => {
-              // reject(error);
-              try {
-                this.common.loading.dismiss();
-              } catch (err) { }
-              this.handleError(error);
-            }
-          );
-      });
-    }
-  }
+  // get(parameters: string) {
+  //   if (!this.checkNetwork()) {
+  //     this.common.showToast("Sem conexão!");
+  //   } else {
+  //     return new Promise((resolve, reject) => {
+  //       let headers = new HttpHeaders();
+  //       // headers
+  //       // headers.append('Cache-Control', 'no-store');
+  //       headers.append("x-auth-token", localStorage.getItem("token"));
+  //       let options = new HttpRequest({ headers: headers });
+  //       let result = this.http
+  //         .get(parameters, options)
+  //         .subscribe(
+  //           (result: any) => {
+  //             resolve(result);
+  //           },
+  //           error => {
+  //             // reject(error);
+  //             try {
+  //               this.common.loading.dismiss();
+  //             } catch (err) { }
+  //             this.handleError(error);
+  //           }
+  //         );
+  //     });
+  //   }
+  // }
 
-  post(parameters: string, body: {}) {
-    if (!this.checkNetwork()) {
-      this.common.showToast("Sem conexão!");
-    } else {
-      return new Promise((resolve, reject) => {
-        let Headers = new HttpHeaders();
-        let Params = new HttpParams();
-        Headers.append("x-auth-token", localStorage.getItem("token"));
-        let options = new HttpRequest<any>({ headers: Headers, responseType: 'json' });
-        this.http
-          .post(parameters, body, options)
-          .map(result => result.json())
-          .subscribe(
-            (result: any) => {
-              resolve(result);
-            },
-            error => {
-              try {
-                this.common.loading.dismiss();
-              } catch (err) { }
-              this.handleError(error);
-            }
-          );
-      });
-    }
-  }
+  // post(parameters: string, body: {}) {
+  //   if (!this.checkNetwork()) {
+  //     this.common.showToast("Sem conexão!");
+  //   } else {
+  //     return new Promise((resolve, reject) => {
+  //       let Headers = new HttpHeaders();
+  //       let Params = new HttpParams();
+  //       Headers.append("x-auth-token", localStorage.getItem("token"));
+  //       let options = new HttpRequest<any>({ headers: Headers, responseType: 'json' });
+  //       this.http
+  //         .post(parameters, body, options)
+  //         .map(result => result.json())
+  //         .subscribe(
+  //           (result: any) => {
+  //             resolve(result);
+  //           },
+  //           error => {
+  //             try {
+  //               this.common.loading.dismiss();
+  //             } catch (err) { }
+  //             this.handleError(error);
+  //           }
+  //         );
+  //     });
+  //   }
+  // }
 
 }
