@@ -1,0 +1,108 @@
+.conteudo {
+    background-image: url("/assets/imagens/02-login/fundo-vermelho-smart.png") !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.imgHeader {
+    padding: 20px;
+    width: 250px;
+}
+
+
+.userImg {
+    text-align: center;
+    margin-top: 10rem;
+
+    @media only screen and (max-width: 320px) {
+        margin-top: 1rem;
+    }    
+
+    .circular {
+        width: 100px;
+        text-align: center;
+        margin: auto;
+    }
+    h4 {
+        text-align: center;
+        color: #fff;
+        font-size: 1.7rem;
+        margin-top: 0.1rem;
+    }
+    
+}
+
+
+.loginFormSection {
+    margin-top: 0.1rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    ion-row {
+        .verticalAlign {
+            align-self: center;
+            text-align: center;
+            img {
+                width: 1.3rem;
+                padding: 0px;
+            }
+        }
+        .textContainer {
+            .item {
+                background: transparent;
+            }
+            .input {
+                color: #fff;
+                .text-input {
+                    margin: 0.5rem;
+                }
+            }
+            .text-input::-moz-placeholder {
+                color: #fff !important;
+                opacity: 0.8;
+                font-weight: 300;
+            }
+            .text-input:-ms-input-placeholder {
+                color: #fff;
+                opacity: 0.8;
+                font-weight: 300;
+            }
+            .text-input::-webkit-input-placeholder {
+                color: #fff;
+                opacity: 0.8;
+                font-weight: 300;
+            }
+        }
+    }
+    .inputField {
+        border-bottom: 0.1rem solid #fff;
+    }
+    .ovalrow {
+        .commonButton {
+            width: 100%;
+            height: 3.0rem;
+            border-radius: 0.5rem;
+            color: #C00D0E;
+            margin-top: 1.5rem;
+            background: #fff;
+        }
+    }
+    .notauser {
+        ion-col {
+            text-align: center;
+            color: #fff;
+            font-weight: 300;
+            margin-top: 4.0rem;
+        }
+    }
+    .transparentButton {
+        .commonButton {
+            width: 100%;
+            height: 4.0rem;
+            border-radius: 0.5rem;
+            color: #fff;
+            margin-top: 0.2rem;
+            background: rgba(0, 0, 0, 0.25);
+        }
+    }
+}
