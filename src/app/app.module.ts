@@ -7,7 +7,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { BaseCommon } from './commons/base-common';
+import { BaseCommon } from '../commons/base-common';
 import { AppConfig } from '../config/app.config';
 
 import { AppComponent } from './app.component';

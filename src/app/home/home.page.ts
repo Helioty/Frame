@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 
-import { BaseCommon } from './../commons/base-common';
+import { BaseCommon } from './../../commons/base-common';
 
 @Component({
   selector: 'app-home',

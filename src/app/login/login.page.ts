@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-import { BaseCommon } from './../commons/base-common';
+import { BaseCommon } from './../../commons/base-common';
 
 @Component({
   selector: 'app-login',
