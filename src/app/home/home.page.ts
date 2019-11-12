@@ -15,7 +15,7 @@ export class HomePage {
     private menu: MenuController,
   ) {
     this.menu.enable(true);
-    this.common.showLoader()
+    // this.common.showLoader()
   }
 
   teste() {
