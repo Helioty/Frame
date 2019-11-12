@@ -102,11 +102,11 @@
 }
 
 .ion-color-fc-button {
-  --ion-color-base: var(--ion-color-fc);
-  --ion-color-base-rgb: var(--ion-color-fc-rgb);
-  --ion-color-contrast: var(--ion-color-fc-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-fc-contrast-rgb);
-  --ion-color-shade: var(--ion-color-fc-shade);
-  --ion-color-tint: var(--ion-color-fc-tint);
+  --ion-color-base: var(--ion-color-fc-button);
+  --ion-color-base-rgb: var(--ion-color-button-fc-rgb);
+  --ion-color-contrast: var(--ion-color-fc-button-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-fc-button-contrast-rgb);
+  --ion-color-shade: var(--ion-color-fc-button-shade);
+  --ion-color-tint: var(--ion-color-fc-button-tint);
 }
 
