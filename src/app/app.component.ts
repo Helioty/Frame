@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 
-import { Platform, MenuController } from '@ionic/angular';
+import { Platform, MenuController, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Router } from '@angular/router';
+
+import { BaseCommon } from './../commons/base-common';
 
 @Component({
   selector: 'app-root',
@@ -22,15 +25,18 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Login',
+      title: 'Logout',
       url: '/login',
-      icon: 'list'
+      icon: 'log-out'
     }
   ];
 
   constructor(
+    public alertCtrl: AlertController,
+    public common: BaseCommon,
     private menu: MenuController,
     private platform: Platform,
+    private router: Router,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
@@ -45,4 +51,39 @@ export class AppComponent {
       this.menu.enable(false);
     });
   }
+
+  buttonAction(page: any) {
+    switch (page.title) {
+      case ("Logout"): {
+        this.showAlertLogout()
+      } break;
+
+      case ("Home"): {
+        this.router.navigateByUrl(page.url)
+      } break;
+
+      case ("List"): {
+        this.router.navigateByUrl(page.url)
+      } break;
+
+      default: {
+        console.log("default of button Action!")
+      }
+    }
+  }
+
+  async showAlertLogout() {
+    const alert = await this.alertCtrl.create({
+      header: "Logout",
+      subHeader: "Deseja sair?",
+      buttons: ['NÃO', {
+        text: 'SIM',
+        handler: () => {
+          this.router.navigate(['login'])
+        }
+      }]
+    });
+    await alert.present();
+  }
+
 }

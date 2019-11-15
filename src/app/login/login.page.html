@@ -4,13 +4,13 @@
     <!-- <ion-progress-bar type="indeterminate"></ion-progress-bar> -->
 
     <ion-row class="ion-justify-content-center ion-padding-top" (click)="getVersionCode()">
-      <ion-col size="8" class="ion-no-padding">
+      <ion-col size-xs="8" size-sm="8" size-md="7" size-lg="6" size-xl="5" class="ion-no-padding">
         <img class="imgHeader" src="/assets/imagens/01-logo/logo_branca.png" />
       </ion-col>
     </ion-row>
 
     <ion-row class="userImgRow ion-margin-top ion-justify-content-center">
-      <ion-col *ngIf="!isLoggedIn" size-xs="4" size-sm="4" size-md="4" size-lg="3" size-xl="2"
+      <ion-col *ngIf="!isLoggedIn" size-xs="3.5" size-sm="2" size-md="2" size-lg="2" size-xl="2"
         class="ion-no-padding ion-text-center">
         <img src="assets/imagens/02-login/idcliente.png" />
         <h4>Login</h4>
@@ -58,7 +58,10 @@
         </ion-row>
         <ion-row class="ovalrow">
           <!-- <ion-button color="light" class="loginButton commonButton" [routerDirection]="'root'" routerLink="/home">Entrar </ion-button> -->
-          <ion-button color="light" class="loginButton commonButton" (click)="entrar()">Entrar </ion-button>
+          <ion-button color="light" class="loginButton commonButton" (click)="entrar()">
+            Entrar
+            <ion-icon name="log-in" slot="end" size="large"></ion-icon>
+          </ion-button>
         </ion-row>
 
         <!-- bottom section of the gorm -->
@@ -66,7 +69,8 @@
           <ion-col>Não é {{ usuarioLogado }} ?</ion-col>
         </ion-row>
         <ion-row class="transparentButton" *ngIf="isLoggedIn">
-          <ion-button color="light" class="loginButton commonButton" (click)="logout()">Acesse outra conta</ion-button>
+          <ion-button color="fc-button" class="loginButton commonButton" (click)="logout()">Acesse outra conta
+          </ion-button>
         </ion-row>
 
       </ion-grid>

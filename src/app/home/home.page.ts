@@ -14,17 +14,32 @@ export class HomePage {
     public common: BaseCommon,
     private menu: MenuController,
   ) {
+
+  }
+
+  ngOnInit() {
+    console.log("ngOnInit")
+  }
+
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter")
     this.menu.enable(true);
-    // this.common.showLoader()
+  }
+
+  ionViewDidEnter() {
+    console.log("ionViewDidEnter")
+  }
+
+  ionViewWillLeave() {
+    console.log("ionViewWillLeave")
+  }
+
+  ionViewDidLeave() {
+    console.log("ionViewDidLeave")
   }
 
   teste() {
     this.common.showAlertError("Aconteceu um erro!")
   }
 
-  async retor() {
-    let ret = await this.common.showAlertRetorno("teste retorno", "vendo se retorna")
-    console.log("Retorno a seguir:")
-    console.log(ret)
-  }
 }
