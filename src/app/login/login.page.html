@@ -10,12 +10,12 @@
     </ion-row>
 
     <ion-row class="userImgRow ion-margin-top ion-justify-content-center">
-      <ion-col *ngIf="!isLoggedIn" size-xs="3.5" size-sm="2" size-md="2" size-lg="2" size-xl="2"
+      <ion-col *ngIf="!isLoggedIn" size-xs="3.5" size-sm="2" size-md="2" size-lg="1" size-xl="1"
         class="ion-no-padding ion-text-center">
         <img src="assets/imagens/02-login/idcliente.png" />
         <h4>Login</h4>
       </ion-col>
-      <ion-col *ngIf="isLoggedIn" size-xs="4" size-sm="4" size-md="4" size-lg="3" size-xl="2"
+      <ion-col *ngIf="isLoggedIn" size-xs="3.5" size-sm="2" size-md="2" size-lg="1" size-xl="1"
         class="ion-no-padding ion-text-center">
         <div *ngIf="!noPhoto">
           <img src="data:image/jpeg;base64,{{foto}}" />
