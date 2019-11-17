@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpParams, HttpRequest } from "@angular/common/http";
+import { HttpHeaders, HttpClient, HttpParams, HttpRequest, HttpClientModule } from "@angular/common/http";
 import { Network } from "@ionic-native/network/ngx";
 import { Platform } from "@ionic/angular";
 import { BaseCommon } from '../base-common';
@@ -14,7 +14,7 @@ declare let Connection: any;
 @Injectable({
   providedIn: 'root'
 })
-export class BaseServiceService {
+export class BaseService {
 
   constructor(
     public http: HttpClient,
