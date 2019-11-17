@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { BaseCommon } from '../commons/base-common';
+import { BaseService } from '../commons/services/base-service.service';
+import { AuthService } from '../commons/services/auth-service.service';
 import { AppConfig } from '../config/app.config';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
@@ -20,7 +22,6 @@ import { AppRoutingModule } from './app-routing.module';
   entryComponents: [],
   imports: [
     BrowserModule,
-    HttpClient,
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
@@ -29,10 +30,12 @@ import { AppRoutingModule } from './app-routing.module';
     AndroidFullScreen,
     AppConfig,
     AppVersion,
+    AuthService,
     BarcodeScanner,
     StatusBar,
     SplashScreen,
     BaseCommon,
+    BaseService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

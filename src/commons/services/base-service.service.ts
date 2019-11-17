@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpParams, HttpRequest, HttpClientModule } from "@angular/common/http";
+import { HttpHeaders, HttpClient, HttpParams, HttpErrorResponse } from "@angular/common/http";
 import { Network } from "@ionic-native/network/ngx";
 import { Platform } from "@ionic/angular";
 import { BaseCommon } from '../base-common';
@@ -79,33 +79,26 @@ export class BaseService {
   // }
 
 
-  // get(parameters: string) {
-  //   if (!this.checkNetwork()) {
-  //     this.common.showToast("Sem conexão!");
-  //   } else {
-  //     return new Promise((resolve, reject) => {
-  //       let headers = new HttpHeaders();
-  //       // headers
-  //       // headers.append('Cache-Control', 'no-store');
-  //       headers.append("x-auth-token", localStorage.getItem("token"));
-  //       let options = new HttpRequest({ headers: headers });
-  //       let result = this.http
-  //         .get(parameters, options)
-  //         .subscribe(
-  //           (result: any) => {
-  //             resolve(result);
-  //           },
-  //           error => {
-  //             // reject(error);
-  //             try {
-  //               this.common.loading.dismiss();
-  //             } catch (err) { }
-  //             this.handleError(error);
-  //           }
-  //         );
-  //     });
-  //   }
-  // }
+  get(parameters: string) {
+    if (!this.checkNetwork()) {
+      this.common.showToast("Sem conexão!");
+    } else {
+
+      let headers = new HttpHeaders();
+      headers.append("x-auth-token", localStorage.getItem("token"));
+
+      return this.http.get(parameters, { headers: headers }).subscribe(
+        (result: any) => {
+          console.log(result);
+        }, (err) => {
+          try {
+            this.common.loading.dismiss();
+          } catch (err) { }
+          this.handleError(err);
+        }
+      );
+    }
+  }
 
   // post(parameters: string, body: {}) {
   //   if (!this.checkNetwork()) {
@@ -133,5 +126,14 @@ export class BaseService {
   //     });
   //   }
   // }
+
+
+  private handleError(error: any) {
+    try {
+      this.common.loading.dismiss();
+    } catch (err) { }
+    this.common.showAlert(error.json().title, error.json().detail);
+  }
+
 
 }
