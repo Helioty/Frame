@@ -9,28 +9,27 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="userImgRow ion-margin-top ion-justify-content-center">
-      <ion-col *ngIf="!isLoggedIn" size-xs="3.5" size-sm="2" size-md="2" size-lg="1" size-xl="1"
-        class="ion-no-padding ion-text-center">
-        <img src="assets/imagens/02-login/idcliente.png" />
-        <h4>Login</h4>
-      </ion-col>
-      <ion-col *ngIf="isLoggedIn" size-xs="3.5" size-sm="2" size-md="2" size-lg="1" size-xl="1"
-        class="ion-no-padding ion-text-center">
-        <div *ngIf="!noPhoto">
-          <img src="data:image/jpeg;base64,{{foto}}" />
-        </div>
-
-        <div *ngIf="noPhoto">
-          <img src="assets/imagens/02-login/idcliente.png" />
-        </div>
-
-        <h4>{{ usuarioLogado }}</h4>
-      </ion-col>
-    </ion-row>
-
     <ion-row>
       <ion-grid class="loginFormSection">
+
+        <ion-row class="userImgRow ion-margin-top ion-justify-content-center">
+          <ion-col *ngIf="!isLoggedIn" size="5" class="ion-no-padding ion-text-center">
+            <img src="assets/imagens/02-login/idcliente.png" />
+            <h4>Login</h4>
+          </ion-col>
+          <ion-col *ngIf="isLoggedIn" size="5" class="ion-no-padding ion-text-center">
+            <div *ngIf="!noPhoto">
+              <img src="data:image/jpeg;base64,{{foto}}" />
+            </div>
+
+            <div *ngIf="noPhoto">
+              <img src="assets/imagens/02-login/idcliente.png" />
+            </div>
+
+            <h4>{{ usuarioLogado }}</h4>
+          </ion-col>
+        </ion-row>
+
         <ion-row class="inputField ion-align-items-center" *ngIf="!isLoggedIn">
           <ion-col size="2" class="ion-text-center ion-no-padding" style="font-size: 30px; color: #fff">
             <!-- <img src="assets/imagens/02-login/user.png"> -->
@@ -39,8 +38,7 @@
 
           <ion-col size="10" *ngIf="!isLoggedIn" class="textContainer ion-text-start">
             <ion-input color="light" placeholder="Login" class="ion-no-padding ion-text-uppercase"
-              [(ngModel)]="loginData.login" type="text" (ionFocus)="resizeElementHeight('LOCK')"
-              (ionBlur)="resizeElementHeight('CLEAR')"></ion-input>
+              [(ngModel)]="loginData.login" type="text"></ion-input>
           </ion-col>
         </ion-row>
 
@@ -52,8 +50,7 @@
 
           <ion-col size="10" class="textContainer ion-text-start">
             <ion-input color="light" placeholder="Senha" class="ion-no-padding ion-text-uppercase"
-              [(ngModel)]="loginData.senha" type="password" (ionFocus)="resizeElementHeight('LOCK')"
-              (ionBlur)="resizeElementHeight('CLEAR')"></ion-input>
+              [(ngModel)]="loginData.senha" type="password"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row class="ovalrow">
