@@ -17,6 +17,9 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { ENV } from '../environments/environment';
+console.log(ENV.mode);
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
