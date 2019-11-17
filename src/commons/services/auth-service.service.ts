@@ -3,6 +3,9 @@ import { HttpHeaders, HttpClient, HttpParams, HttpErrorResponse } from "@angular
 import { BaseCommon } from '../base-common';
 import { BaseService } from './base-service.service';
 
+import { API_URL } from '../../config/app.config';
+import { ENV } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +25,7 @@ export class AuthService {
       this.common.showToast('Sem conexão!');
     } else {
 
-      let link: string;
+      let link: string = ENV.WS_AUTH + API_URL + 'loginMobile';
       let headers = new HttpHeaders();
 
       headers.append('login', login);
