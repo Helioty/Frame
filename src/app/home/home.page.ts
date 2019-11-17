@@ -4,6 +4,8 @@ import { MenuController } from '@ionic/angular';
 import { BaseCommon } from './../../commons/base-common';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 
+import { ENV } from '../../environments/environment';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -45,6 +47,14 @@ export class HomePage {
 
   teste() {
     this.common.showAlertError("Aconteceu um erro!")
+  }
+
+  modo() {
+    if (ENV.mode == "Production") {
+      this.common.showAlert("Modo", ENV.mode)
+    } else {
+      this.common.showAlert("Modo", ENV.mode)
+    }
   }
 
 }
