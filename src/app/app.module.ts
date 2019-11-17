@@ -9,6 +9,7 @@ import { AppVersion } from '@ionic-native/app-version/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { BaseCommon } from '../commons/base-common';
 import { AppConfig } from '../config/app.config';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
   ],
   providers: [
+    AndroidFullScreen,
     AppConfig,
     AppVersion,
     StatusBar,

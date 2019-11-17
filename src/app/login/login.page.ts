@@ -3,6 +3,7 @@ import { MenuController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 import { BaseCommon } from './../../commons/base-common';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginPage implements OnInit {
   data: any;
 
   constructor(
+    private androidFullScreen: AndroidFullScreen,
     public common: BaseCommon,
     private menu: MenuController,
     private platform: Platform,
@@ -53,6 +55,9 @@ export class LoginPage implements OnInit {
   ionViewWillEnter() {
     console.log("ionViewWillEnter")
     this.menu.enable(false);
+    this.androidFullScreen.isImmersiveModeSupported()
+      .then(() => console.log('Immersive mode supported'))
+      .catch(err => console.log(err));
   }
 
   ionViewDidEnter() {

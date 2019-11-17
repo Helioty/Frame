@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 
 import { BaseCommon } from './../../commons/base-common';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { BaseCommon } from './../../commons/base-common';
 export class HomePage {
 
   constructor(
+    private androidFullScreen: AndroidFullScreen,
     public common: BaseCommon,
     private menu: MenuController,
   ) {
@@ -24,6 +26,9 @@ export class HomePage {
   ionViewWillEnter() {
     console.log("ionViewWillEnter")
     this.menu.enable(true);
+    this.androidFullScreen.isImmersiveModeSupported()
+      .then(() => console.log('Immersive mode supported'))
+      .catch(err => console.log(err));
   }
 
   ionViewDidEnter() {

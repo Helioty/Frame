@@ -4,6 +4,7 @@ import { Platform, MenuController, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 
 import { BaseCommon } from './../commons/base-common';
 
@@ -32,6 +33,7 @@ export class AppComponent {
   ];
 
   constructor(
+    private androidFullScreen: AndroidFullScreen,
     public alertCtrl: AlertController,
     public common: BaseCommon,
     private menu: MenuController,
@@ -41,6 +43,9 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
+    this.androidFullScreen.isImmersiveModeSupported()
+      .then(() => console.log('Immersive mode supported'))
+      .catch(err => console.log(err));
   }
 
   initializeApp() {
