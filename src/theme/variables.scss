@@ -110,3 +110,9 @@
   --ion-color-tint: var(--ion-color-fc-button-tint);
 }
 
+ion-header {
+  height: auto;
+  ion-toolbar {
+    --min-height: 45px !important;
+  }
+}

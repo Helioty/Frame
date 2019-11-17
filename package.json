@@ -78,7 +78,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-app-version": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-fullscreen": {}
+      "cordova-plugin-fullscreen": {},
+      "phonegap-plugin-barcodescanner": {}
     },
     "platforms": [
       "android"
