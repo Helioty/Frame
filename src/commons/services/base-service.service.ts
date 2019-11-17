@@ -100,32 +100,27 @@ export class BaseService {
     }
   }
 
-  // post(parameters: string, body: {}) {
-  //   if (!this.checkNetwork()) {
-  //     this.common.showToast("Sem conexão!");
-  //   } else {
-  //     return new Promise((resolve, reject) => {
-  //       let Headers = new HttpHeaders();
-  //       let Params = new HttpParams();
-  //       Headers.append("x-auth-token", localStorage.getItem("token"));
-  //       let options = new HttpRequest<any>({ headers: Headers, responseType: 'json' });
-  //       this.http
-  //         .post(parameters, body, options)
-  //         .map(result => result.json())
-  //         .subscribe(
-  //           (result: any) => {
-  //             resolve(result);
-  //           },
-  //           error => {
-  //             try {
-  //               this.common.loading.dismiss();
-  //             } catch (err) { }
-  //             this.handleError(error);
-  //           }
-  //         );
-  //     });
-  //   }
-  // }
+  post(link: string, body: {}) {
+    
+    if (!this.checkNetwork()) {
+      this.common.showToast("Sem conexão!");
+    } else {
+
+      let Headers = new HttpHeaders();
+      Headers.append("x-auth-token", localStorage.getItem("token"));
+
+      this.http.post(link, body, { headers: Headers }).subscribe(
+        (result: any) => {
+          console.log(result);
+        }, (err) => {
+          try {
+            this.common.loading.dismiss();
+          } catch (err) { }
+          this.handleError(err);
+        }
+      );
+    }
+  }
 
 
   private handleError(error: any) {
