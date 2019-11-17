@@ -79,7 +79,7 @@ export class BaseService {
   // }
 
 
-  get(parameters: string) {
+  get(link: string) {
     if (!this.checkNetwork()) {
       this.common.showToast("Sem conexão!");
     } else {
@@ -87,7 +87,7 @@ export class BaseService {
       let headers = new HttpHeaders();
       headers.append("x-auth-token", localStorage.getItem("token"));
 
-      return this.http.get(parameters, { headers: headers }).subscribe(
+      return this.http.get(link, { headers: headers }).subscribe(
         (result: any) => {
           console.log(result);
         }, (err) => {
