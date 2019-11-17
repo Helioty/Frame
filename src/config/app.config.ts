@@ -22,18 +22,21 @@ export class AppConfig {
     constructor(
         public http: HttpClient,
     ) {
-        // if (ENV.mode == 'Production') {
-        //     this.getApiUrl = 'http://fcimbservices.ferreiracosta.local:8080/WS-Publico/getUrlService?apl=pv';
-        //     this.getURL();
-        //     getHTTP();
-        // } else {
-        //     API_URL = 'http://hmlfcimbservices.ferreiracosta.local:8585/';
-        // }
 
-        //  http://hmlfcimbservices.ferreiracosta.local:8585/WS-Publico/getVersao/2?arquivo=VersaoSFC.exe&tipo=S
-        //  Net.showLog('MAIK RYUGE');
-        //  Net.downloadJson();          
+        if (ENV.mode == 'Production') {
 
+            this.getApiUrl = 'https://publico.api.imb/getUrlServiceOKD?apl=pv';
+            this.getURL();
+            getHTTP();
+
+        } else {
+
+            this.getApiUrl = 'https://publico.staging.imb/getUrlServiceOKD';
+            this.getURL();
+            getHTTP();
+
+        }
+        
     }
 
 

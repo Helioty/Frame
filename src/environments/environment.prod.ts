@@ -5,7 +5,7 @@ export const environment = {
 };
 
 export const ENV: Environment = {
-  mode: 'Development',
+  mode: 'Production',
   WS_AUTH: 'https://login.',
   WS_PRODUTO:  'https://produto.',
   WS_CRM: 'https://crm.',

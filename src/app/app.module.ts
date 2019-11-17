@@ -13,6 +13,7 @@ import { AuthService } from '../commons/services/auth-service.service';
 import { AppConfig } from '../config/app.config';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Network } from "@ionic-native/network/ngx";
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +40,7 @@ console.log(ENV.mode);
     SplashScreen,
     BaseCommon,
     BaseService,
+    Network,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -28,10 +28,13 @@ export class AuthService {
       headers.append('login', login);
       headers.append('senha', senha);
 
-      return this.http.get(link, { headers: headers }).subscribe(res => {
-        console.log(res);
-      }, (err) => {
-        console.log(err);
+      return new Promise((resolve, reject) => {
+        this.http.get(link, { headers: headers }).subscribe(res => {
+          resolve(res);
+          console.log(res);
+        }, (err) => {
+          console.log(err);
+        });
       });
 
     }
