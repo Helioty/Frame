@@ -36,7 +36,7 @@ export class AppConfig {
             getHTTP();
 
         }
-        
+
     }
 
 
@@ -47,6 +47,20 @@ export class AppConfig {
                 console.log(data);
                 let link: any = data;
                 API_URL = link.server + '/';
+                resolve(data);
+            }, err => {
+                console.log(err);
+            });
+        });
+    }
+
+    public getURLNode() {
+        let apiUrl = this.getApiUrlNode;
+        return new Promise(resolve => {
+            this.http.get(apiUrl).subscribe(data => {
+                console.log(data);
+                let link: any = data;
+                API_URL_NODE = link.server + '/';
                 resolve(data);
             }, err => {
                 console.log(err);
