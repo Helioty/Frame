@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 
+import { AuthGuard } from './../guards/auth.guard';
 import { BaseCommon } from './../commons/base-common';
 
 @Component({
@@ -33,6 +34,7 @@ export class AppComponent {
   ];
 
   constructor(
+    private authGuard: AuthGuard,
     private androidFullScreen: AndroidFullScreen,
     public alertCtrl: AlertController,
     public common: BaseCommon,
@@ -84,6 +86,7 @@ export class AppComponent {
       buttons: ['NÃO', {
         text: 'SIM',
         handler: () => {
+          this.authGuard.logged = false;
           this.router.navigate(['login'])
         }
       }]

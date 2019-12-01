@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 
+import { AuthGuard } from './../../guards/auth.guard';
 import { BaseCommon } from './../../commons/base-common';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 import { AuthService } from '../../commons/services/auth-service.service';
@@ -26,6 +27,7 @@ export class LoginPage implements OnInit {
   data: any;
 
   constructor(
+    private authGuard: AuthGuard,
     private androidFullScreen: AndroidFullScreen,
     public authService: AuthService,
     public common: BaseCommon,
@@ -96,18 +98,31 @@ export class LoginPage implements OnInit {
   async getVersionCode() {
     let versionCode = await this.common.getVersionCode()
     let versionNumber = await this.common.getVersionNumber()
-    let V = 'Versão: ' + versionNumber + '<br/> Version Code: ' + versionCode;
+    let V = 'Versão: ' + versionNumber + '<br> Version Code: ' + versionCode;
     this.common.showAlert(await this.common.getAppName(), V);
   }
 
-  entrar() {
-    console.log("A")
-    this.router.navigate(['home'])
+  async entrar() {
+    await this.common.showLoader()
+    if (this.loginData.login == 'R6543MRM' && this.loginData.senha == 'japa1966') {
+      this.authGuard.logged = true;
+      if (this.authGuard.logged) {
+        try {
+          this.common.loading.dismiss()
+          this.router.navigate(['home'])
+        }
+        catch (error) {
+          console.log(error)
+        }
+      }
+    }
+    else {
+      this.common.loading.dismiss()
+      this.common.showAlertError("Usuario ou senha incorretos!")
+    }
+
   }
 
-  logout() {
-
-  }
 
   // doLogin() {
 
@@ -115,7 +130,7 @@ export class LoginPage implements OnInit {
 
   //     this.common.showLoader();
   //     this.authService.login(this.loginData.login.toUpperCase(), this.loginData.senha).then((result) => {
-        
+
   //       this.data = result;
   //       this.common.loading.dismiss();
 
@@ -158,7 +173,7 @@ export class LoginPage implements OnInit {
   //       this.common.loading.dismiss();
   //       this.loginData.senha = '';
   //       //this.commonServices.showToast(err);
-        
+
   //       // by Ryuge 05/09/2019
   //       if (err.json().detail != null) {
   //         this.common.showAlert(err.json().title, err.json().detail);
@@ -174,7 +189,7 @@ export class LoginPage implements OnInit {
 
   //       this.data = result;
   //       this.common.loading.dismiss();
-        
+
   //       if (this.data.status == 'OK') {
   //         this.common.showAlert(this.data.json().title, this.data.json().detail);
   //       } else {

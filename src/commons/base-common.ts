@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
+
 export class BaseCommon {
 
     public loading: any;
@@ -69,7 +72,7 @@ export class BaseCommon {
     async showAlert(titulo: string, msg: string) {
         const alert = await this.alertCtrl.create({
             header: titulo,
-            subHeader: msg,
+            message: msg,
             buttons: ['OK']
         });
         await alert.present();
@@ -78,7 +81,7 @@ export class BaseCommon {
     async showAlertInfo(msg: string) {
         const alert = await this.alertCtrl.create({
             header: "Info",
-            subHeader: msg,
+            message: msg,
             buttons: ['OK']
         });
         await alert.present();
@@ -87,7 +90,7 @@ export class BaseCommon {
     async showAlertError(erro: string) {
         const alert = await this.alertCtrl.create({
             header: "ERRO!",
-            subHeader: erro,
+            message: erro,
             buttons: ['OK']
         });
         await alert.present();
@@ -113,25 +116,6 @@ export class BaseCommon {
 
     // }
 
-
-    async showAlertRetorno(titulo: string, msg: string) {
-        const alert = await this.alertCtrl.create({
-            header: titulo,
-            subHeader: msg,
-            buttons: [{
-                text: 'OK',
-                handler: () => {
-                    return "retornou!!!"
-                }
-            }, {
-                text: 'Cancelar',
-                handler: () => {
-                    return null
-                }
-            }]
-        });
-        await alert.present();
-    }
 
 
 }
