@@ -9,13 +9,20 @@
 .userImgRow {
 
     img {
-        width: 100px;
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 50%;
+        max-width: 100px !important;
+        max-height: 100px !important;
+        overflow: hidden !important;
+        border: 0.2rem solid #f4f4f4 !important;
     }
     
     h4 {
+        width: 100%;
         text-align: center;
         color: #fff;
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         margin-top: 0.1rem;
     }
     
@@ -35,6 +42,7 @@
             color: #C00D0E;
             margin-top: 1.5rem;
             background: #fff;
+            font-weight: 600;
         }
     }
     .notauser {
@@ -42,17 +50,18 @@
             text-align: center;
             color: #fff;
             font-weight: 300;
-            margin-top: 4.0rem;
+            margin-top: 1.5rem;
         }
     }
     .transparentButton {
         .commonButton {
             width: 100%;
-            height: 4.0rem;
+            height: 3.0rem;
             border-radius: 0.5rem;
             color: #fff;
             margin-top: 0.2rem;
             background: rgba(0, 0, 0, 0.25);
+            font-weight: 600;
         }
     }
 }
