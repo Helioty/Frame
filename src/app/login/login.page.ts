@@ -36,6 +36,8 @@ export class LoginPage implements OnInit {
     private router: Router
   ) {
 
+    this.goToFullScreen()
+
     if (ENV.mode == 'Production') {
       this.loginData.login = '';
       this.loginData.senha = '';
@@ -84,7 +86,7 @@ export class LoginPage implements OnInit {
 
   goToFullScreen() {
     this.androidFullScreen.isImmersiveModeSupported()
-      .then(() => console.log('Immersive mode supported'))
+      .then(() => this.androidFullScreen.immersiveMode())
       .catch(err => console.log(err));
   }
 

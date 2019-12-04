@@ -46,7 +46,7 @@ export class AppComponent {
   ) {
     this.initializeApp();
     this.androidFullScreen.isImmersiveModeSupported()
-      .then(() => console.log('Immersive mode supported'))
+      .then(() => this.androidFullScreen.immersiveMode())
       .catch(err => console.log(err));
   }
 

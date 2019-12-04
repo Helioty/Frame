@@ -57,4 +57,10 @@ export class HomePage {
     }
   }
 
+  goToFullScreen() {
+    this.androidFullScreen.isImmersiveModeSupported()
+      .then(() => this.androidFullScreen.immersiveMode())
+      .catch(err => console.log(err));
+  }
+
 }
