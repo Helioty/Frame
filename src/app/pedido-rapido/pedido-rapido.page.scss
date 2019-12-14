@@ -1,0 +1,50 @@
+
+.listaProdutos {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    margin: 0 auto;
+
+    .produto {
+        width: 100%;
+        border-radius: 6px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 1px 2px 5px 0  rgba(0, 0, 0, 0.4);
+        margin-bottom: 10px;
+        ion-item {
+            --inner-padding-end: none !important;
+        }
+        .produtoRow {
+            min-height: 85px !important;
+            width: 100%;
+            .produtoImage {
+                margin: auto 0;
+                img {
+                    width: 100% !important;
+                    height: 100% !important;
+                    max-width: 100px !important;
+                    max-height: 100px !important;
+                }
+            }
+            .produtoInformacao {
+                margin: auto 0;
+                .produtoDescri {
+                    color: #808080;
+                    font-size: 14px;
+                    font-weight: 400;
+                    white-space: normal;
+                }
+                .produtoPreco {
+                    font-size: 15px;
+                    color: red;
+                    font-weight: bold;
+                    padding: 0;
+                }
+            }
+            .produtoQuantidade {
+                margin: auto 0;
+            }
+        }
+    }
+}
+

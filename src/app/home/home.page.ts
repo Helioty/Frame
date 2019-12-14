@@ -5,6 +5,7 @@ import { BaseCommon } from './../../commons/base-common';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 
 import { ENV } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomePage {
     private androidFullScreen: AndroidFullScreen,
     public common: BaseCommon,
     private menu: MenuController,
+    private router: Router
   ) {
 
   }
@@ -63,4 +65,7 @@ export class HomePage {
       .catch(err => console.log(err));
   }
 
+  pedidoRapido() {
+    this.router.navigate(['pedido-rapido'])
+  }
 }

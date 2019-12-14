@@ -27,6 +27,11 @@ export class AppComponent {
       icon: 'list'
     },
     {
+      title: 'Pedido Rapido',
+      url: '/pedido-rapido',
+      icon: 'speedometer'
+    },
+    {
       title: 'Logout',
       url: '/login',
       icon: 'log-out'
@@ -70,6 +75,10 @@ export class AppComponent {
       } break;
 
       case ("List"): {
+        this.router.navigateByUrl(page.url)
+      } break;
+
+      case ("Pedido Rapido"): {
         this.router.navigateByUrl(page.url)
       } break;
 

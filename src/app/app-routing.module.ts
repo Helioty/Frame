@@ -18,9 +18,13 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
-  { 
-    path: 'login', 
-    loadChildren: './login/login.module#LoginPageModule' 
+  {
+    path: 'login',
+    loadChildren: './login/login.module#LoginPageModule'
+  },
+  {
+    path: 'pedido-rapido',
+    loadChildren: './pedido-rapido/pedido-rapido.module#PedidoRapidoPageModule'
   }
 ];
 
@@ -30,4 +34,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
