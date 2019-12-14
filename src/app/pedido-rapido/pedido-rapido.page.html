@@ -10,7 +10,7 @@
 <ion-content>
 
   <ion-list lines="none" class="listaProdutos">
-    <ion-item-sliding class="produto ion-no-padding ion-align-items-stretch" *ngFor="let item of itens">
+    <ion-item-sliding class="produto ion-no-padding ion-align-items-stretch" *ngFor="let item of itens; let i = index">
       <ion-item-options side="start">
         <ion-item-option color="warning">
           <ion-icon slot="top" name="information-circle" size="large"></ion-icon>
@@ -30,17 +30,31 @@
             </ion-row>
 
             <ion-row class="produtoPreco">
-              R$ 9.999,00
+              R$ {{ item.preco*item.qtd }}
             </ion-row>
 
-            <ion-row class="produtoPrecoUnidade">
-
+            <ion-row class="produtoPrecoUnidade" *ngIf="item.qtd > 1">
+              R$ {{ item.preco }} cada
             </ion-row>
 
           </ion-col>
 
-          <ion-col size="3" class="produtoQuantidade ion-text-center">
-            {{ item.qtd }}
+          <ion-col size="3" class="produtoQuantidade">
+            <ion-row class="quantidadeTop ion-justify-content-center">
+              <ion-button expand="full" fill="outline" color="dark" class="ion-no-margin" (click)="add(i)">
+                <ion-icon name="arrow-up" mode="ios" size="large"></ion-icon>
+              </ion-button>
+            </ion-row>
+
+            <ion-row class="quantidadeCenter ion-justify-content-center">
+              {{ item.qtd }}
+            </ion-row>
+
+            <ion-row class="quantidadeBottom ion-justify-content-center">
+              <ion-button expand="full" fill="outline" color="dark" class="ion-no-margin" (click)="rm(i)" *ngIf="item.qtd > 1">
+                <ion-icon name="arrow-down" mode="ios" size="large" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-row>
           </ion-col>
         </ion-row>
       </ion-item>

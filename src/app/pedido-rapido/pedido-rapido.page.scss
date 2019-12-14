@@ -15,7 +15,7 @@
             --inner-padding-end: none !important;
         }
         .produtoRow {
-            min-height: 85px !important;
+            min-height: 100px !important;
             width: 100%;
             .produtoImage {
                 margin: auto 0;
@@ -30,19 +30,55 @@
                 margin: auto 0;
                 .produtoDescri {
                     color: #808080;
-                    font-size: 14px;
+                    font-size: 15px;
                     font-weight: 400;
                     white-space: normal;
                 }
                 .produtoPreco {
-                    font-size: 15px;
+                    font-size: 16px;
                     color: red;
                     font-weight: bold;
                     padding: 0;
                 }
+                .produtoPrecoUnidade {
+                    color: #4d4d4d;
+                    font-size: 14px;
+                    font-weight: bold;
+                }
             }
             .produtoQuantidade {
-                margin: auto 0;
+                // margin: auto 0;
+                background-color: #f4f4f4;
+                border-left: 2px solid rgba(0, 0, 0, 0.1);
+                ion-row {
+                    background-color: #f4f4f4;
+                }
+                ion-button {
+                    width: 100% !important;
+                    --background: transparent !important;
+                    --border-color: transparent !important;
+                    --border-width: 0 !important;
+                }
+                .quantidadeTop {
+                    // border: 2px solid rgba(0, 0, 0, 0.1);
+                    border-bottom: none;
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
+                }
+                .quantidadeCenter {
+                    // border: 2px solid rgba(0, 0, 0, 0.1);
+                    border-bottom: none;
+                    border-top: none;
+                    font-size: 18px;
+                    font-weight: bold;
+                    padding: 5px 0;
+                }
+                .quantidadeBottom {
+                    // border: 2px solid rgba(0, 0, 0, 0.1);
+                    border-top: none;
+                    border-bottom-left-radius: 6px;
+                    border-bottom-right-radius: 6px;
+                }
             }
         }
     }
