@@ -19,11 +19,14 @@
             width: 100%;
             .produtoImage {
                 margin: auto 0;
+                text-align: center;
                 img {
                     width: 100% !important;
                     height: 100% !important;
                     max-width: 100px !important;
                     max-height: 100px !important;
+                    vertical-align: middle;
+                    margin: auto;
                 }
             }
             .produtoInformacao {
@@ -60,24 +63,18 @@
                     --border-width: 0 !important;
                 }
                 .quantidadeTop {
-                    // border: 2px solid rgba(0, 0, 0, 0.1);
-                    border-bottom: none;
-                    border-top-left-radius: 6px;
-                    border-top-right-radius: 6px;
+                    height: 33% !important;
                 }
                 .quantidadeCenter {
-                    // border: 2px solid rgba(0, 0, 0, 0.1);
                     border-bottom: none;
                     border-top: none;
                     font-size: 18px;
                     font-weight: bold;
                     padding: 5px 0;
+                    height: 34% !important;
                 }
                 .quantidadeBottom {
-                    // border: 2px solid rgba(0, 0, 0, 0.1);
-                    border-top: none;
-                    border-bottom-left-radius: 6px;
-                    border-bottom-right-radius: 6px;
+                    height: 33% !important;
                 }
             }
         }
