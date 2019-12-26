@@ -13,7 +13,10 @@ export function getHTTPNode(): any {
     return API_URL_NODE;
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
+
 export class AppConfig {
 
     private getApiUrl: string = '';
@@ -48,8 +51,8 @@ export class AppConfig {
                 let link: any = data;
                 API_URL = link.server + '/';
                 resolve(data);
-            }, err => {
-                console.log(err);
+            }, error => {
+                console.log(error);
             });
         });
     }
@@ -62,8 +65,8 @@ export class AppConfig {
                 let link: any = data;
                 API_URL_NODE = link.server + '/';
                 resolve(data);
-            }, err => {
-                console.log(err);
+            }, error => {
+                console.log(error);
             });
         });
     }

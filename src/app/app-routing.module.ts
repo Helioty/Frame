@@ -25,7 +25,12 @@ const routes: Routes = [
   {
     path: 'pedido-rapido',
     loadChildren: './pedido-rapido/pedido-rapido.module#PedidoRapidoPageModule'
+  },
+  {
+    path: 'to-pdf-page',
+    loadChildren: './to-pdf-page/to-pdf-page.module#ToPDFPagePageModule'
   }
+
 ];
 
 @NgModule({

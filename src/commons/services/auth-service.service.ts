@@ -23,20 +23,18 @@ export class AuthService {
     if (!this.service.checkNetwork()) {
       this.common.loading.dismiss();
       this.common.showToast('Sem conexão!');
-    } else {
-
-      let link: string = ENV.WS_AUTH + API_URL + 'loginMobile';
-      let headers = new HttpHeaders();
-
-      headers.append('login', login);
-      headers.append('senha', senha);
+    }
+    else {
+      const link: string = ENV.WS_AUTH + API_URL + 'loginMobile';
+      const headers = new HttpHeaders().set("login", login).set("senha", senha);
 
       return new Promise((resolve, reject) => {
-        this.http.get(link, { headers: headers }).subscribe(res => {
-          resolve(res);
-          console.log(res);
-        }, (err) => {
-          console.log(err);
+        this.http.get<JSON>(link, { headers }).subscribe(result => {
+          resolve(result);
+          console.log(result);
+        }, (error) => {
+          reject(error);
+          console.log(error);
         });
       });
 

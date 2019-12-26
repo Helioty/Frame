@@ -68,4 +68,8 @@ export class HomePage {
   pedidoRapido() {
     this.router.navigate(['pedido-rapido'])
   }
+
+  toPDF() {
+    this.router.navigate(['to-pdf-page'])
+  }
 }

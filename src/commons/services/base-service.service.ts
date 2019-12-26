@@ -6,6 +6,7 @@ import { BaseCommon } from '../base-common';
 
 import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
 import { map, filter, scan } from 'rxjs/operators';
+import { resolve } from 'url';
 
 
 declare let navigator: any;
@@ -80,15 +81,14 @@ export class BaseService {
 
 
   get(link: string) {
+
     if (!this.checkNetwork()) {
       this.common.showToast("Sem conexão!");
     } else {
 
-      let headers = new HttpHeaders();
-      headers.append("x-auth-token", localStorage.getItem("token"));
+      const headers = new HttpHeaders().set("x-auth-token", localStorage.getItem("token"));
 
-      return this.http.get(link, { headers: headers }).subscribe(
-        (result: any) => {
+      return this.http.get<JSON>(link, { headers }).subscribe((result: any) => {
           console.log(result);
         }, (err) => {
           try {

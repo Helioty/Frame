@@ -8,6 +8,7 @@ import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 import { AuthService } from '../../commons/services/auth-service.service';
 
 import { ENV } from '../../environments/environment';
+import { AppConfig, getHTTP } from 'src/config/app.config';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginPage implements OnInit {
   data: any;
 
   constructor(
+    public appConfig: AppConfig,
     private authGuard: AuthGuard,
     private androidFullScreen: AndroidFullScreen,
     public authService: AuthService,
@@ -36,17 +38,16 @@ export class LoginPage implements OnInit {
     private router: Router
   ) {
 
-    this.goToFullScreen()
-
     if (ENV.mode == 'Production') {
       this.loginData.login = '';
       this.loginData.senha = '';
     } else {
-      this.loginData.login = 'R6543MRM';
-      this.loginData.senha = 'japa1966';
+      // this.loginData.login = 'R6543MRM';
+      // this.loginData.senha = 'japa1966';
     }
 
     if (this.platform.is('ios') || this.platform.is('android')) {
+      this.goToFullScreen()
       this.versao = '';
     }
 
@@ -64,6 +65,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     console.log("ngOnInit")
+    console.log(getHTTP());
   }
 
   ionViewWillEnter() {
@@ -106,22 +108,52 @@ export class LoginPage implements OnInit {
 
   async entrar() {
     await this.common.showLoader()
-    if (this.loginData.login == 'R6543MRM' && this.loginData.senha == 'japa1966') {
-      this.authGuard.logged = true;
-      if (this.authGuard.logged) {
-        try {
-          this.common.loading.dismiss()
-          this.router.navigate(['home'])
+
+    this.authService.login(this.loginData.login.toUpperCase(), this.loginData.senha).then((result) => {
+      this.common.loading.dismiss();
+      this.data = result;
+
+      if (this.data.status == 'OK') {
+        this.common.showAlert(this.data.json().title, this.data.json().detail);
+      } else {
+
+        localStorage.setItem('token', this.data.authorization);
+        localStorage.setItem('login', this.loginData.login);
+        localStorage.setItem('foto', this.data.foto);
+        localStorage.setItem('empresa', this.data.empresa.id);
+        localStorage.setItem('nome', this.data.nomeDisplay);
+        localStorage.setItem('isLoggedIn', 'true');
+
+        // comentado por Helio 26/12/2019
+        // this.authService.menuAcesso = 'Logout';
+
+        if (localStorage.getItem("foto") === 'null') {
+          this.noPhoto = true;
         }
-        catch (error) {
-          console.log(error)
+
+        this.authGuard.logged = true;
+        if (this.authGuard.logged) {
+          try {
+            this.common.loading.dismiss()
+            this.router.navigate(['home'])
+          }
+          catch (error) {
+            console.log(error)
+          }
         }
       }
-    }
-    else {
-      this.common.loading.dismiss()
-      this.common.showAlertError("Usuario ou senha incorretos!")
-    }
+
+    }, (error) => {
+      this.isLoggedIn = false;
+      this.common.loading.dismiss();
+      this.loginData.senha = '';
+
+      if (error.json().tittle != "" && error.json().detail != "") {
+        this.common.showAlert(error.json().title, error.json().detail);
+      } else {
+        this.common.showAlert("Ops!", error);
+      }
+    });
 
   }
 
