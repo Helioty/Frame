@@ -106,10 +106,9 @@ export class BaseService {
       this.common.showToast("Sem conexão!");
     } else {
 
-      let Headers = new HttpHeaders();
-      Headers.append("x-auth-token", localStorage.getItem("token"));
+      const headers = new HttpHeaders().set("x-auth-token", localStorage.getItem("token"));
 
-      this.http.post(link, body, { headers: Headers }).subscribe(
+      this.http.post(link, body, { headers }).subscribe(
         (result: any) => {
           console.log(result);
         }, (err) => {

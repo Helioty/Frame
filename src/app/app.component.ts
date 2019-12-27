@@ -14,6 +14,7 @@ import { BaseCommon } from './../commons/base-common';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
+
 export class AppComponent {
   public appPages = [
     {
@@ -37,6 +38,13 @@ export class AppComponent {
       icon: 'log-out'
     }
   ];
+
+
+  public foto: any;
+
+  public nome: any;
+
+  public noPhoto: boolean = false;
 
   constructor(
     private authGuard: AuthGuard,
@@ -103,4 +111,28 @@ export class AppComponent {
     await alert.present();
   }
 
+
+  getStatus(): any {
+
+    if (localStorage.getItem("token")) {
+      if (localStorage.getItem("foto")) {
+        this.foto = localStorage.getItem("foto");
+        console.log(this.foto)
+      }
+
+      if (localStorage.getItem("nome") != undefined) {
+        this.nome = localStorage.getItem("nome");
+        console.log(this.nome)
+      }
+
+      if (localStorage.getItem("foto") != 'null' && localStorage.getItem("foto") != undefined) {
+        this.noPhoto = true;
+        console.log(this.noPhoto)
+      }
+
+    }
+
+  }
+
 }
+

@@ -3,7 +3,7 @@
   <ion-grid class="conteudo ion-no-padding">
     <!-- <ion-progress-bar type="indeterminate"></ion-progress-bar> -->
 
-    <ion-row class="ion-justify-content-center ion-padding-top" (dblclick)="getVersionCode()">
+    <ion-row class="ion-justify-content-center ion-padding-top" *ngIf="!emFoco" (dblclick)="getVersionCode()">
       <ion-col size-xs="8" size-sm="8" size-md="7" size-lg="6" size-xl="5" class="ion-no-padding">
         <img class="imgHeader" src="/assets/imagens/01-logo/logo_branca.png" />
       </ion-col>
@@ -12,7 +12,7 @@
     <ion-row>
       <ion-grid class="loginFormSection">
 
-        <ion-row class="userImgRow ion-margin-top ion-justify-content-center">
+        <ion-row class="userImgRow ion-margin-top ion-justify-content-center" *ngIf="!emFoco">
           <ion-col *ngIf="!isLoggedIn" size="9" class="ion-no-padding ion-text-center">
             <img src="assets/imagens/02-login/idcliente.png" />
             <h4>Login</h4>
@@ -38,7 +38,7 @@
 
           <ion-col size="10" *ngIf="!isLoggedIn" class="textContainer ion-text-start">
             <ion-input color="light" placeholder="Login" class="ion-no-padding ion-text-uppercase"
-              [(ngModel)]="loginData.login" type="text"></ion-input>
+              [(ngModel)]="loginData.login" type="text" (ionFocus)="inFoco()" (ionBlur)="inFoco()"></ion-input>
           </ion-col>
         </ion-row>
 
@@ -50,7 +50,7 @@
 
           <ion-col size="10" class="textContainer ion-text-start">
             <ion-input color="light" placeholder="Senha" class="ion-no-padding ion-text-uppercase"
-              [(ngModel)]="loginData.senha" type="password"></ion-input>
+              [(ngModel)]="loginData.senha" type="password" (ionFocus)="inFoco()" (ionBlur)="inFoco()"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row class="ovalrow">

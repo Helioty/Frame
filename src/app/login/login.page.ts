@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-import { AuthGuard } from './../../guards/auth.guard';
 import { BaseCommon } from './../../commons/base-common';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 import { AuthService } from '../../commons/services/auth-service.service';
 
 import { ENV } from '../../environments/environment';
 import { AppConfig, getHTTP } from 'src/config/app.config';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -27,9 +27,11 @@ export class LoginPage implements OnInit {
   loginData = { login: '', senha: '' };
   data: any;
 
+  public emFoco: boolean = false;
+
   constructor(
+    public appComponent: AppComponent,
     public appConfig: AppConfig,
-    private authGuard: AuthGuard,
     private androidFullScreen: AndroidFullScreen,
     public authService: AuthService,
     public common: BaseCommon,
@@ -131,16 +133,11 @@ export class LoginPage implements OnInit {
           this.noPhoto = true;
         }
 
-        this.authGuard.logged = true;
-        if (this.authGuard.logged) {
-          try {
-            this.common.loading.dismiss()
-            this.router.navigate(['home'])
-          }
-          catch (error) {
-            console.log(error)
-          }
-        }
+        this.appComponent.getStatus()
+
+        this.router.navigate(['home'])
+        this.common.loading.dismiss()
+
       }
 
     }, (error) => {
@@ -148,8 +145,10 @@ export class LoginPage implements OnInit {
       this.common.loading.dismiss();
       this.loginData.senha = '';
 
-      if (error.json().tittle != "" && error.json().detail != "") {
-        this.common.showAlert(error.json().title, error.json().detail);
+      let erro = error.error;
+
+      if (erro.tittle != "" && erro.detail != "") {
+        this.common.showAlert(erro.title, erro.detail);
       } else {
         this.common.showAlert("Ops!", error);
       }
@@ -157,115 +156,18 @@ export class LoginPage implements OnInit {
 
   }
 
+  logout() {
+    this.isLoggedIn = false;
 
-  // doLogin() {
+    if (localStorage.getItem("token")) {
+      localStorage.clear();
+    }
+  }
 
-  //   if (this.platform.is('ios') || this.platform.is('android')) {
-
-  //     this.common.showLoader();
-  //     this.authService.login(this.loginData.login.toUpperCase(), this.loginData.senha).then((result) => {
-
-  //       this.data = result;
-  //       this.common.loading.dismiss();
-
-  //       console.log('doLogin');
-  //       console.log(result);
-
-  //       if (this.data.status == 'OK') {
-  //         //this.commonServices.showToast(this.data.message);
-  //         this.common.showAlert(this.data.json().title, this.data.json().detail);
-  //       } else {
-
-  //         console.log('doLogin A');
-  //         console.log(this.data);
-
-  //         localStorage.setItem('token', this.data.authorization);
-  //         localStorage.setItem('login', this.loginData.login);
-  //         localStorage.setItem('foto', this.data.foto);
-  //         localStorage.setItem('empresa', this.data.empresa.id);
-  //         localStorage.setItem('nome', this.data.nomeDisplay);
-  //         localStorage.setItem('host', '');
-  //         localStorage.setItem('tms', this.data.empresa.usaFreteTMS);
-  //         localStorage.setItem('isLoggedIn', 'true');
-
-  //         // this.commonServices.fotoLogin = localStorage.getItem("foto");
-
-  //         // this.authService.menuAcesso = 'Logout';
-
-  //         if (localStorage.getItem("foto") === 'null') {
-  //           this.noPhoto = true;
-  //         }
-
-  //         // troca de pagina
-  //         this.entrar()
-
-  //       }
-
-
-  //     }, (err) => {
-  //       this.isLoggedIn = false;
-  //       this.common.loading.dismiss();
-  //       this.loginData.senha = '';
-  //       //this.commonServices.showToast(err);
-
-  //       // by Ryuge 05/09/2019
-  //       if (err.json().detail != null) {
-  //         this.common.showAlert(err.json().title, err.json().detail);
-  //       } else {
-  //         this.common.showAlert("Ops!", err);
-  //       }
-  //     });
-
-  //   } else {
-
-  //     this.common.showLoader();
-  //     this.authService.login(this.loginData.login.toUpperCase(), this.loginData.senha).then((result) => {
-
-  //       this.data = result;
-  //       this.common.loading.dismiss();
-
-  //       if (this.data.status == 'OK') {
-  //         this.common.showAlert(this.data.json().title, this.data.json().detail);
-  //       } else {
-
-  //         console.log('doLogin B');
-  //         console.log(this.data);
-
-  //         localStorage.setItem('token', this.data.authorization);
-  //         localStorage.setItem('login', this.loginData.login);
-  //         localStorage.setItem('foto', this.data.foto);
-  //         localStorage.setItem('empresa', this.data.empresa.id);
-  //         localStorage.setItem('nome', this.data.nomeDisplay);
-  //         localStorage.setItem('host', '');
-  //         localStorage.setItem('tms', this.data.empresa.usaFreteTMS);
-  //         localStorage.setItem('isLoggedIn', 'true');
-
-  //         // this.commonServices.fotoLogin = localStorage.getItem("foto");
-
-  //         // this.authService.menuAcesso = 'Logout';
-
-  //         if (localStorage.getItem("foto") === 'null') {
-  //           this.noPhoto = true;
-  //         }
-
-  //         // troca de pagina
-  //         this.entrar()
-
-  //       }
-
-  //     }, (err) => {
-  //       this.isLoggedIn = false;
-  //       this.common.loading.dismiss();
-  //       this.loginData.senha = '';
-  //       if (err.json().tittle && err.json().detail) {
-  //         this.common.showAlert(err.json().title, err.json().detail);
-  //       } else {
-  //         this.common.showAlert("Ops!", err);
-  //       }
-  //     });
-
-  //   }
-  // }
-
+  inFoco() {
+    if (this.platform.is('ios') || this.platform.is('android')) {
+      this.emFoco = !this.emFoco;
+    }
+  }
 
 }

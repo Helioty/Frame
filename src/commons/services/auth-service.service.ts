@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpParams, HttpErrorResponse } from "@angular/common/http";
+import { AuthGuard } from './../../guards/auth.guard';
 import { BaseCommon } from '../base-common';
 import { BaseService } from './base-service.service';
 
@@ -12,6 +13,7 @@ import { ENV } from '../../environments/environment';
 export class AuthService {
 
   constructor(
+    private authGuard: AuthGuard,
     public http: HttpClient,
     public common: BaseCommon,
     public service: BaseService
@@ -26,10 +28,13 @@ export class AuthService {
     }
     else {
       const link: string = ENV.WS_AUTH + API_URL + 'loginMobile';
-      const headers = new HttpHeaders().set("login", login).set("senha", senha);
+      const headers = new HttpHeaders()
+        .set("login", login)
+        .set("senha", senha);
 
       return new Promise((resolve, reject) => {
         this.http.get<JSON>(link, { headers }).subscribe(result => {
+          this.authGuard.logged = true;
           resolve(result);
           console.log(result);
         }, (error) => {
