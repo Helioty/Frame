@@ -1,0 +1,252 @@
+.pedido-adicionar-sacola-slides {
+    overflow-y: scroll;
+
+    --bullet-background: var(--ion-color-light);
+    --bullet-background-active: var(--ion-color-fc);
+  
+    height: 100%;
+  
+    .slide-inner-row {
+      --ion-grid-column-padding: 0px;
+  
+      height: 100%;
+      width: 100%;
+      padding: var(--page-margin);
+      // .swiper-pagination space
+      border-bottom: var(--page-swiper-pagination-space) solid transparent;
+      background-clip: padding-box;
+
+      max-width: 700px;
+    }
+}
+
+.slide-depositos {
+    padding: 10px;
+
+    .item-descricao {
+        width: 100%;
+
+        color: #212121;
+        font-size: 13px;
+        font-weight: bold;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .item-codigo-e-descricao {
+        width: 100%;
+
+        color: #8c8c8c;
+        font-size: 10px;
+        font-weight: normal;
+    }
+
+    .item-receber-row {
+        width: 100%;
+
+        .icon-receber-row {
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .card-receber-row {
+            width: 100%;
+
+            .card-receber {
+                width: 100%;
+                margin: 0 !important;
+
+                border-radius: 6px;
+                box-shadow: 1px 2px 5px 0  rgba(0, 0, 0, 0.3);
+
+                p {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .item-receber-card {
+            // border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            box-shadow: 1px 2px 5px 0  rgba(0, 0, 0, 0.3);
+            margin: 5px; 
+            align-items: flex-end;
+            display: flex !important;
+
+
+            ion-grid {
+                padding: 0px !important;
+                ion-row {
+                    flex-direction: row;
+                    align-items: center;
+                    // .alert {
+                        
+                    //     // height: 20px;
+                    //     .blink_me {
+                    //         background-color: yellow !important; 
+                    //         animation: blinker 1s linear infinite;
+                    //     }
+                    // }
+                    @keyframes blinker {
+                        50% {
+                            opacity: 0;
+                        }
+                    }
+                    .blink_me {
+                        padding: 0;
+                        background: rgba(255, 255, 70, 1);
+                        color: black;
+                        text-align: center;
+                        vertical-align: middle;
+                        animation: blinker 1s linear infinite;
+                        display: flex;
+                        align-self: stretch;
+                        div {
+                            font-size: 16px;
+                            width: 100%;
+                            text-align: center;
+                            align-self: center;
+                            flex-direction: column;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    .item-depositos-row {
+        width: 100%;
+
+        .icon-depositos-row {
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .card-depositos {
+            width: 100%;
+            margin: 0 !important;
+            margin-bottom: 10px !important;
+
+            border-radius: 6px;
+            box-shadow: 1px 2px 5px 0  rgba(0, 0, 0, 0.3);
+
+            .grid-depositos {
+                padding: 0 !important;
+            }
+
+            .firstCol {
+                padding: 0 !important;
+                background: #C40318;
+                color: #fff;
+                text-align: center;
+
+                .numero-depositos {
+                    margin: auto 0 !important;
+                    font-size: 16px;
+                }
+
+                // border: 2px solid rgba(0, 0, 0, 0.3);
+                // border-top-left-radius: 6px;
+                // border-bottom-left-radius: 6px;
+            }
+
+            .secondCol {
+                align-self: center;
+                border-right: 1px solid #d9d9d9;
+                white-space: normal;
+                padding: 5px;
+
+                h4 {
+                    color: #494949;
+                    margin: 7px 0;
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+                h5 {
+                    color: #939393;
+                    margin: 5px 0;
+                    font-size: 13px;
+                }
+            }
+
+            .thirdcol {
+                padding: 5px;
+                margin: auto 0 !important;
+                ion-row.rowQtde {
+                    text-align: center;
+                    border-bottom: 1px solid #c6141f;
+                    margin-bottom: 7px;
+                    input {
+                        text-align: center;
+                        margin: 0 0 8px 0;
+                    }
+                }
+                h4 {
+                    color: #878787;
+                    margin: 10px auto;
+                    margin-top: 0;
+                    font-size: 24px;
+                    font-weight: normal;
+                    text-align: right;
+                    margin-right: 10px;
+                }
+                h5 {
+                    font-size: 13px;
+                    color: #b7b7b7;
+                    font-weight: normal;
+                }
+
+                .btn-quantidade {
+                    width: 100%;
+                    margin: 0 !important;
+                    
+                    --background: transparent !important;
+                    --border-color: transparent !important;
+                    --border-width: 0 !important;
+                    --padding-start: 0 !important;
+                    --padding-end: 0 !important;
+                }
+
+                .button-native {
+                    padding: 0 !important;
+                    padding-inline-start: var(--padding-start);
+                    
+                }
+            }
+        }
+        
+    }
+
+}
+
+ion-icon.imgQtde {
+    // font-size: 300px;
+}
+ion-icon.imgQtdeRemove {
+    color: #C00D0E;
+}
+ion-icon.imgQtdeAdd {
+    color: #00A651;
+}
+
+.grid-footer {
+    padding: 0 !important;
+    background-color: #fafafa;
+
+    p {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .btn-adicionar {
+        width: 100%;
+        height: 50px;
+        margin: 0 !important;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}

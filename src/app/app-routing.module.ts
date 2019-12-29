@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'to-pdf-page',
     loadChildren: './to-pdf-page/to-pdf-page.module#ToPDFPagePageModule'
+  },
+  { 
+    path: 'new-tms', 
+    loadChildren: './new-tms/new-tms.module#NewTMSPageModule' 
   }
 
 ];

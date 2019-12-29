@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-toolbar color="fc">
+    <ion-title>newTMS</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-toggle color="success" [(ngModel)]="toggleTeste"></ion-toggle>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides class="pedido-adicionar-sacola-slides" scrollbar="true" [options]="slideOpts">
+    <ion-slide class="slide-depositos">
+      <ion-row class="slide-inner-row">
+
+        <ion-row class="item-descricao">
+          item.descricao
+        </ion-row>
+        <ion-row class="item-codigo-e-descricao">
+          item.codigodigitoembalagem - item.descricao_prod
+        </ion-row>
+
+        <ion-row class="item-receber-row">
+          <ion-row class="icon-receber-row">
+            <ion-col size="2">
+              <!-- <img src="assets/images/07-formas_de_retirada/entrega.png"> -->
+            </ion-col>
+            <ion-col size="10" style="padding-top: 6px !important; text-align: left;">
+              Receba em casa
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="card-receber-row">
+            <ion-card class="card-receber">
+              <ion-item button (click)="goToSlide('opcsEntrega')" lines="none">
+                <p>
+                  VER OPÇÕES DE ENTREGA
+                </p>
+              </ion-item>
+            </ion-card>
+          </ion-row>
+        </ion-row>
+
+        <ion-row class="item-depositos-row">
+          <ion-row class="icon-depositos-row">
+            <ion-col size="2">
+              <!-- <img src="assets/images/07-formas_de_retirada/entrega.png"> -->
+            </ion-col>
+            <ion-col size="10" style="padding-top: 6px !important; text-align: left;">
+              Levar agora
+            </ion-col>
+          </ion-row>
+
+          <ion-card class="card-depositos" *ngFor="let data of dados; let i = index">
+            <ion-grid class="grid-depositos">
+              <ion-row class="alert">
+
+
+                <!-- <ion-col col-1 class="firstCol" *ngIf="!dados[y].excedeEstoque">
+
+                    <div>
+                      <div>{{ data.deposito }}<br /></div>
+                    </div>
+
+                  </ion-col>
+
+                  <ion-col col-1 *ngIf="dados[y].excedeEstoque" class="blink_me">
+
+                    <div>
+                      <div>{{ data.deposito }} <br /> </div>
+
+                    </div>
+
+                  </ion-col> -->
+
+                <ion-col size="1" class="firstCol">
+                  <ion-row style="height: 100%;">
+                    <ion-col class="numero-depositos">
+                      20
+                    </ion-col>
+                  </ion-row>
+
+                </ion-col>
+
+                <ion-col size="5" class="secondCol">
+                  <h4>{{ data.encarregado }}</h4>
+                  <h5>Estoque: {{ data.estoque}}</h5>
+                </ion-col>
+
+                <ion-col size="6" class="thirdcol">
+                  <ion-row class="ion-align-items-center" style="display: flex;">
+
+                    <ion-col size="3.5" class="colQtde" (click)="rmQtd(i)">
+                      <ion-button fill="outline" class="btn-quantidade">
+                        <ion-icon slot="icon-only" class="imgQtde imgQtdeRemove" name="remove-circle"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col col-5 class="colQtdeCenter">
+                      <ion-row *ngIf="qtdDec > 0" class="rowQtde">
+                        <ion-input id={{i}} class="textInput" #input type="number" inputmode="numeric"
+                          [(ngModel)]="dados[i].qtdPedido" [attr.maxlength]="5"
+                          (keyup)="checkDec($event.target); mascaraDecimal(i)"
+                          (ionChange)="onValidaEstoque(dados[i].qtdPedido,dados[i].estoque,i)"
+                          (blur)="setValue($event,i)" (focus)="OnFocus($event,i)" (keyup.enter)="closeKeyboard()">
+                        </ion-input>
+                      </ion-row>
+                      <ion-row *ngIf="qtdDec == 0" class="rowQtde">
+                        <ion-input id={{i}} class="textInput" #input type="number" [(ngModel)]="dados[i].qtdPedido"
+                          [attr.maxlength]="5" (keyup)="checkInteger($event.target); limitaQtd(i)"
+                          (ionChange)="onValidaEstoque(dados[i].qtdPedido,dados[i].estoque,i)"
+                          (blur)="setValue($event,i)" (focus)="OnFocus($event,i)" (keyup.enter)="closeKeyboard()">
+                        </ion-input>
+                      </ion-row>
+                    </ion-col>
+
+                    <ion-col size="3.5" class="colQtde" (click)="addQtd(i)">
+                      <ion-button fill="outline" class="btn-quantidade">
+                        <ion-icon slot="icon-only" class="imgQtde imgQtdeAdd" name="add-circle"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </ion-row>
+
+      </ion-row>
+    </ion-slide>
+
+    <ion-slide class="browsing-categories-slide question-slide">
+      <ion-row class="slide-inner-row">
+        <ion-col class="question-options-col" size="12">
+          <!-- <h2 class="slide-title">What are you browsing for?</h2> -->
+          <ion-progress-bar *ngIf="!toggleTeste" type="indeterminate"></ion-progress-bar>
+          <ion-progress-bar *ngIf="toggleTeste"></ion-progress-bar>
+          <ion-list class="question-options-list">
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>
+
+<ion-footer>
+  <ion-grid class="grid-footer">
+    <ion-row *ngIf="toggleTeste">
+      <p>Valor do produto + Frete</p>
+    </ion-row>
+
+    <ion-row *ngIf="!toggleTeste">
+      <p>Valor do produto</p>
+    </ion-row>
+
+    <ion-row>
+      <ion-button color="success" expand="full" class="btn-adicionar">
+        ADICIONAR AO PEDIDO
+      </ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
