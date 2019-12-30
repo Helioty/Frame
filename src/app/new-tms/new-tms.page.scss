@@ -6,22 +6,24 @@
   
     height: 100%;
   
-    .slide-inner-row {
-      --ion-grid-column-padding: 0px;
-  
-      height: 100%;
-      width: 100%;
-      padding: var(--page-margin);
-      // .swiper-pagination space
-      border-bottom: var(--page-swiper-pagination-space) solid transparent;
-      background-clip: padding-box;
-
-      max-width: 700px;
-    }
 }
 
 .slide-depositos {
     padding: 10px;
+
+    .slide-inner-row {
+        --ion-grid-column-padding: 0px;
+    
+        height: 100%;
+        width: 100%;
+        padding: var(--page-margin);
+        // .swiper-pagination space
+        border-bottom: var(--page-swiper-pagination-space) solid transparent;
+        background-clip: padding-box;
+  
+        max-width: 700px;
+    }
+
 
     .item-descricao {
         width: 100%;
@@ -222,15 +224,39 @@
 
 }
 
-ion-icon.imgQtde {
-    // font-size: 300px;
-}
 ion-icon.imgQtdeRemove {
     color: #C00D0E;
 }
 ion-icon.imgQtdeAdd {
     color: #00A651;
 }
+
+
+.slide-TMS {
+    // padding: 10px;
+
+    .slide-inner-row {
+        --ion-grid-column-padding: 0px;
+    
+        height: 100%;
+        width: 100%;
+        border-bottom: var(--page-swiper-pagination-space) solid transparent;
+        background-clip: padding-box;
+    }
+
+    .input-row {
+        padding: 10px;
+        margin: 0 auto;
+        max-width: 700px;
+
+        .input-item {
+            border-radius: 6px;
+
+            
+        }
+    }
+}
+
 
 .grid-footer {
     padding: 0 !important;

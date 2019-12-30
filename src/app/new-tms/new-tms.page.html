@@ -1,5 +1,9 @@
 <ion-header>
   <ion-toolbar color="fc">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
     <ion-title>newTMS</ion-title>
 
     <ion-buttons slot="end">
@@ -130,16 +134,35 @@
       </ion-row>
     </ion-slide>
 
-    <ion-slide class="browsing-categories-slide question-slide">
+    <ion-slide class="slide-TMS">
       <ion-row class="slide-inner-row">
-        <ion-col class="question-options-col" size="12">
-          <!-- <h2 class="slide-title">What are you browsing for?</h2> -->
-          <ion-progress-bar *ngIf="!toggleTeste" type="indeterminate"></ion-progress-bar>
-          <ion-progress-bar *ngIf="toggleTeste"></ion-progress-bar>
-          <ion-list class="question-options-list">
-            
+        <ion-progress-bar *ngIf="!toggleTeste" type="indeterminate"></ion-progress-bar>
+        <ion-progress-bar *ngIf="toggleTeste"></ion-progress-bar>
+
+        <ion-row class="input-row">
+
+          <ion-item class="input-item">
+            <ion-label position="fixed">Quantidade</ion-label>
+            <ion-input required class="ion-text-end" type="number" #quantidade (keyup)="validaNumero(qtdEntrega)"
+              [(ngModel)]="qtdEntrega"></ion-input>
+          </ion-item>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-list>
+            <ion-radio-group [(ngModel)]="teste">
+              <ion-list-header>
+                <ion-label>Name</ion-label>
+              </ion-list-header>
+
+              <ion-item *ngFor="let item of dados; let i = index">
+                <ion-label>{{ item.encarregado }}</ion-label>
+                <ion-radio slot="start" value="item.estoque"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
           </ion-list>
-        </ion-col>
+        </ion-row>
       </ion-row>
     </ion-slide>
 

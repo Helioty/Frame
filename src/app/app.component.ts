@@ -33,6 +33,11 @@ export class AppComponent {
       icon: 'speedometer'
     },
     {
+      title: 'New TMS',
+      url: '/new-tms',
+      icon: 'log-out'
+    },
+    {
       title: 'Logout',
       url: '/login',
       icon: 'log-out'
@@ -90,6 +95,10 @@ export class AppComponent {
         this.router.navigateByUrl(page.url)
       } break;
 
+      case ("New TMS"): {
+        this.router.navigateByUrl(page.url)
+      } break;
+
       default: {
         console.log("default of button Action!")
       }
@@ -117,17 +126,17 @@ export class AppComponent {
     if (localStorage.getItem("token")) {
       if (localStorage.getItem("foto")) {
         this.foto = localStorage.getItem("foto");
-        console.log(this.foto)
+        // console.log(this.foto)
       }
 
-      if (localStorage.getItem("nome") != undefined) {
+      if (localStorage.getItem("nome")) {
         this.nome = localStorage.getItem("nome");
-        console.log(this.nome)
+        // console.log(this.nome)
       }
 
       if (localStorage.getItem("foto") != 'null' && localStorage.getItem("foto") != undefined) {
         this.noPhoto = true;
-        console.log(this.noPhoto)
+        // console.log(this.noPhoto)
       }
 
     }
