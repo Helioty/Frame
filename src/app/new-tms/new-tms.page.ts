@@ -32,6 +32,9 @@ export class NewTMSPage implements OnInit {
   public qtdEntrega = 0;
 
   public teste;
+  public opcaoSelecionada;
+
+  public indexSeller: number;
   
   constructor() { }
 
@@ -73,6 +76,14 @@ export class NewTMSPage implements OnInit {
 
     //Habilita novamente as chamadas do blur e keyup
     running = false;
+  }
+
+  mee(A: any, I: any) {
+    this.indexSeller = I;
+    console.log(this.teste)
+    console.log(this.opcaoSelecionada)
+    console.log(A)
+    console.log(this.dados[I])
   }
 
 }

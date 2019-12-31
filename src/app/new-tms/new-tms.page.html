@@ -149,17 +149,32 @@
 
         </ion-row>
 
-        <ion-row>
-          <ion-list>
-            <ion-radio-group [(ngModel)]="teste">
+        <ion-row class="list-row">
+          <ion-list class="list-sellers" lines="none">
+            <ion-radio-group  #asd [(ngModel)]="teste">
+              <!-- <ion-list-header>
+                <ion-label>Escolha um método de envio</ion-label>
+              </ion-list-header> -->
+              
+              <ion-item class="item-seller" *ngFor="let item of dados; let i = index">
+                <ion-label>{{ item.encarregado }}</ion-label>
+                <ion-radio color="fc" slot="end" [value]="item.estoque" (ionSelect)="mee(asd, i)"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+          
+          <ion-list class="list-sellers" lines="none" class="item-seller-opcs" *ngIf="teste">
+            <ion-radio-group [(ngModel)]="opcaoSelecionada" *ngIf="teste == dados[indexSeller].estoque">
               <ion-list-header>
-                <ion-label>Name</ion-label>
+                <ion-label>Escolha um método de envio</ion-label>
               </ion-list-header>
 
-              <ion-item *ngFor="let item of dados; let i = index">
-                <ion-label>{{ item.encarregado }}</ion-label>
-                <ion-radio slot="start" value="item.estoque"></ion-radio>
-              </ion-item>
+              <ion-row class="row-sellers" *ngFor="let item2 of dados; let j = index">
+                <ion-item class="item-seller">
+                  <ion-label>{{ item2.encarregado }}</ion-label>
+                  <ion-radio color="fc" slot="end" [value]="item2.estoque"></ion-radio>
+                </ion-item>
+              </ion-row>
             </ion-radio-group>
           </ion-list>
         </ion-row>

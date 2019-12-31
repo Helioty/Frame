@@ -255,6 +255,31 @@ ion-icon.imgQtdeAdd {
             
         }
     }
+
+    .list-row {
+        width: 100%;
+        padding: 10px;
+        margin: 0 auto;
+        max-width: 700px;
+
+        .list-sellers {
+            width: 100%;
+
+            .item-seller {
+                overflow: hidden;
+                border: 2px solid #C4C5C6;
+                border-radius: 6px;
+                margin-bottom: 10px;
+
+                // --padding-start: 0 !important;
+                // --inner-padding-end: 0 !important;
+
+                .item-seller-opcs {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
 
 
