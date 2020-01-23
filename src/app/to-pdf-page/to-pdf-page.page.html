@@ -1,9 +1,101 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="fc">
     <ion-title>toPDF-page</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input [(ngModel)]="siteUrl" class="inputs"> </ion-input>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col>
+        <ion-input [(ngModel)]="renderWidth" type="number" min="1280" max="15360" class="inputs"> </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Formato de Impressão</ion-label>
+          <ion-select [(ngModel)]="formato" cancelText="" interface="action-sheet" [interfaceOptions]="customActionSheetOptions" (ionChange)="consol()">
+            <ion-select-option *ngFor="let opcs of opcsFormato" [value]="opcs">{{opcs}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Eixo</ion-label>
+          <ion-select [(ngModel)]="pageOrientation" [interfaceOptions]="customAlertOptions" interface="alert" placeholder="Select One">
+            <ion-select-option *ngFor="let opcs of opcsOrientation" [value]="opcs">{{opcs}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="clickToGenerate()">
+          Click to PDF
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="consol()">
+          Log of Result
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <!-- <div class="btn btn-primary" (click)="downloadImage()">DL</div>
+
+  <ion-grid #screen id="table">
+    <ion-row>
+      <ion-col scope="col">#</ion-col>
+      <ion-col scope="col">First</ion-col>
+      <ion-col scope="col">Last</ion-col>
+      <ion-col scope="col">Handle</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-row>
+        <ion-col scope="row">1</ion-col>
+        <ion-col>Mark</ion-col>
+        <ion-col>Otto</ion-col>
+        <ion-col>@mdo</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col scope="row">2</ion-col>
+        <ion-col>Jacob</ion-col>
+        <ion-col>Thornton</ion-col>
+        <ion-col>@fat</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col scope="row">3</ion-col>
+        <ion-col>Larry</ion-col>
+        <ion-col>the Bird</ion-col>
+        <ion-col>@twitter</ion-col>
+      </ion-row>
+    </ion-row>
+  </ion-grid>
+  <table  class="table table-striped">
+    <tbody>
+      
+    </tbody>
+  </table>
+
+  <div id="download">
+    <img #canvas>
+    <a #downloadLink></a>
+  </div> -->
 </ion-content>
