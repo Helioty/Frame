@@ -23,7 +23,7 @@ export class CommonService {
   ) { }
 
 
-  // Funções comuns --------------------------------------------------------------------------------------------------
+  // Funções comuns
   public goToFullScreen() {
     if (this.platform.is('cordova')) {
       this.androidFullScreen.isImmersiveModeSupported()
@@ -33,7 +33,7 @@ export class CommonService {
   }
 
 
-  // Version --------------------------------------------------------------------------------------------------------
+  // Version
   async getAppName() {
     if (this.platform.is('cordova')) {
       this.appName = await this.appVersion.getAppName();
@@ -67,7 +67,7 @@ export class CommonService {
   }
 
 
-  // Loading --------------------------------------------------------------------------------------------------------
+  // Loading
   async showLoader() {
     this.loading = await this.loadingCtrl.create({
       spinner: 'circular'
@@ -84,7 +84,7 @@ export class CommonService {
   }
 
 
-  // Toast's --------------------------------------------------------------------------------------------------------
+  // Toast's
   async showToast(msg: string) {
     const toast = await this.toastCtrl.create({
       message: msg,
@@ -100,7 +100,7 @@ export class CommonService {
   }
 
 
-  // Alert's --------------------------------------------------------------------------------------------------------
+  // Alert's
   async showAlert(titulo: string, msg: string) {
     const alert = await this.alertCtrl.create({
       header: titulo,
@@ -129,7 +129,7 @@ export class CommonService {
   }
 
 
-  // formatação de string -------------------------------------------------------------------------------------------
+  // formatação de string
   public formataCEP(value: string): string {
     value = value.replace(/\D/g, '');
     value = value.replace(/^(\d{2})(\d{3})(\d)/, '$1.$2-$3');
