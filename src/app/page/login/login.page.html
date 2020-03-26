@@ -1,0 +1,81 @@
+<ion-content>
+
+  <ion-grid class="conteudo ion-no-padding">
+
+    <ion-row class="ion-justify-content-center ion-padding-top" *ngIf="!emFoco" (dblclick)="showVersion()">
+      <ion-col size-xs="8" size-sm="8" size-md="7" size-lg="6" size-xl="5" class="ion-no-padding">
+        <img class="imgHeader" src="/assets/images/01-logo/logo_branca.png" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-grid class="loginFormSection">
+
+        <ion-row class="userImgRow ion-margin-top ion-justify-content-center" *ngIf="!emFoco">
+          <ion-col *ngIf="!isLoggedIn" size="9" class="ion-no-padding ion-text-center">
+            <img src="assets/images/02-login/idcliente.png" />
+            <h4>Login</h4>
+          </ion-col>
+          <ion-col *ngIf="isLoggedIn" size="9" class="ion-no-padding ion-text-center">
+            <div *ngIf="!noPhoto">
+              <img src="data:image/jpeg;base64,{{foto}}" />
+            </div>
+
+            <div *ngIf="noPhoto">
+              <img src="assets/images/02-login/idcliente.png" />
+            </div>
+
+            <h4>{{ usuarioLogado }}</h4>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="inputField ion-align-items-center" *ngIf="!isLoggedIn">
+          <ion-col size="2" class="ion-text-center ion-no-padding" style="font-size: 30px; color: #fff">
+            <!-- <img src="assets/images/02-login/user.png"> -->
+            <ion-icon name="person"></ion-icon>
+          </ion-col>
+
+          <ion-col size="10" *ngIf="!isLoggedIn" class="textContainer ion-text-start">
+            <ion-input color="light" placeholder="Login" class="ion-no-padding ion-text-uppercase"
+              [(ngModel)]="loginData.login" type="text" (ionFocus)="inFoco()" (ionBlur)="inFoco()"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="inputField ion-align-items-center ion-margin-top">
+          <ion-col size="2" class="ion-text-center ion-no-padding" style="font-size: 30px; color: #fff">
+            <!-- <img src="assets/images/02-login/lock.png"> -->
+            <ion-icon name="lock-closed"></ion-icon>
+          </ion-col>
+
+          <ion-col size="10" class="textContainer ion-text-start">
+            <ion-input color="light" placeholder="Senha" class="ion-no-padding ion-text-uppercase"
+              [(ngModel)]="loginData.senha" type="password" (ionFocus)="inFoco()" (ionBlur)="inFoco()"
+              (keyup.enter)="entrar()"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ovalrow">
+          <!-- <ion-button color="light" class="loginButton commonButton" [routerDirection]="'root'" routerLink="/home">Entrar </ion-button> -->
+          <ion-button color="light" class="loginButton commonButton" (click)="entrar()">
+            Entrar
+            <!-- <ion-icon name="log-in" slot="end" size="default"></ion-icon> -->
+          </ion-button>
+        </ion-row>
+
+        <!-- bottom section of the gorm -->
+        <ion-row class="notauser" *ngIf="isLoggedIn">
+          <ion-col>Não é {{ usuarioLogado }} ?</ion-col>
+        </ion-row>
+        <ion-row class="transparentButton" *ngIf="isLoggedIn">
+          <ion-button color="fc-button" class="loginButton commonButton" (click)="logout()">
+            Acesse outra conta
+          </ion-button>
+        </ion-row>
+
+      </ion-grid>
+    </ion-row>
+    <ion-row>
+      <ion-button [routerLink]="['/home']">Home</ion-button>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

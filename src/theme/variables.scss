@@ -4,12 +4,12 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary: #C40318;
+  --ion-color-primary-rgb: 196, 3, 24;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-shade: #ac0315;
+  --ion-color-primary-tint: #ca1c2f;
 
   /** secondary **/
   --ion-color-secondary: #0cd1e8;
@@ -77,11 +77,27 @@
 
   /** fc **/
   --ion-color-fc: #C40318;
-  --ion-color-fc-rgb: 12, 209, 232;
+  --ion-color-fc-rgb: 196, 3, 24;
   --ion-color-fc-contrast: #ffffff;
   --ion-color-fc-contrast-rgb: 255, 255, 255;
   --ion-color-fc-shade: #ac0315;
   --ion-color-fc-tint: #ca1c2f;
+
+  /** fc blue **/
+  --ion-color-fc-blue: #59B3D9;
+  --ion-color-fc-blue-rgb: 89,179,217;
+  --ion-color-fc-blue-contrast: #000000;
+  --ion-color-fc-blue-contrast-rgb: 0,0,0;
+  --ion-color-fc-blue-shade: #4e9ebf;
+  --ion-color-fc-blue-tint: #6abbdd;
+
+  /** fc orange **/
+  --ion-color-fc-orange: #EF6F38;
+  --ion-color-fc-orange-rgb: 239,111,56;
+  --ion-color-fc-orange-contrast: #ffffff;
+  --ion-color-fc-orange-contrast-rgb: 0,0,0;
+  --ion-color-fc-orange-shade: #d26231;
+  --ion-color-fc-orange-tint: #f17d4c;
 
   /** fc button **/
   --ion-color-fc-button: #C00D0E;
@@ -90,6 +106,38 @@
   --ion-color-fc-button-contrast-rgb: 255, 255, 255;
   --ion-color-fc-button-shade: #a90b0c;
   --ion-color-fc-button-tint: #c62526;
+
+  //** fc button green ** 
+  --ion-color-fc-button-green: #32A651;
+  --ion-color-fc-button-green-rgb: 50,166,81;
+  --ion-color-fc-button-green-contrast: #ffffff;
+  --ion-color-fc-button-green-contrast-rgb: 255,255,255;
+  --ion-color-fc-button-green-shade: #2c9247;
+  --ion-color-fc-button-green-tint: #47af62;
+
+  // Cinza
+  --ion-color-cinza: #f5f5f5;
+  --ion-color-cinza-rgb: 245,245,245;
+  --ion-color-cinza-contrast: #000000;
+  --ion-color-cinza-contrast-rgb: 0,0,0;
+  --ion-color-cinza-shade: #d8d8d8;
+  --ion-color-cinza-tint: #f6f6f6;
+
+  // Cinza avermelhado
+  --ion-color-fc-cinza-vermelho: #695b5e;
+  --ion-color-fc-cinza-vermelho-rgb: 105,91,94;
+  --ion-color-fc-cinza-vermelho-contrast: #ffffff;
+  --ion-color-fc-cinza-vermelho-contrast-rgb: 255,255,255;
+  --ion-color-fc-cinza-vermelho-shade: #5c5053;
+  --ion-color-fc-cinza-vermelho-tint: #786b6e;
+
+  // White-red
+  --ion-color-white-red: #ffffff;
+  --ion-color-white-red-rgb: 12, 209, 232;
+  --ion-color-white-red-contrast: #c62526;
+  --ion-color-white-red-contrast-rgb: 0,0,0;
+  --ion-color-white-red-shade: #e0e0e0;
+  --ion-color-white-red-tint: #ffffff;
 }
 
 .ion-color-fc {
@@ -101,6 +149,24 @@
   --ion-color-tint: var(--ion-color-fc-tint);
 }
 
+.ion-color-fc-blue {
+  --ion-color-base: var(--ion-color-fc-blue);
+  --ion-color-base-rgb: var(--ion-color-fc-blue-rgb);
+  --ion-color-contrast: var(--ion-color-fc-blue-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-fc-blue-contrast-rgb);
+  --ion-color-shade: var(--ion-color-fc-blue-shade);
+  --ion-color-tint: var(--ion-color-fc-blue-tint);
+}
+
+.ion-color-fc-orange {
+  --ion-color-base: var(--ion-color-fc-orange);
+  --ion-color-base-rgb: var(--ion-color-fc-orange-rgb);
+  --ion-color-contrast: var(--ion-color-fc-orange-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-fc-orange-contrast-rgb);
+  --ion-color-shade: var(--ion-color-fc-orange-shade);
+  --ion-color-tint: var(--ion-color-fc-orange-tint);
+}
+
 .ion-color-fc-button {
   --ion-color-base: var(--ion-color-fc-button);
   --ion-color-base-rgb: var(--ion-color-button-fc-rgb);
@@ -108,5 +174,78 @@
   --ion-color-contrast-rgb: var(--ion-color-fc-button-contrast-rgb);
   --ion-color-shade: var(--ion-color-fc-button-shade);
   --ion-color-tint: var(--ion-color-fc-button-tint);
+}
+
+.ion-color-fc-button-green {
+  --ion-color-base: var(--ion-color-fc-button-green);
+  --ion-color-base-rgb: var(--ion-color-fc-button-green-rgb);
+  --ion-color-contrast: var(--ion-color-fc-button-green-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-fc-button-green-contrast-rgb);
+  --ion-color-shade: var(--ion-color-fc-button-green-shade);
+  --ion-color-tint: var(--ion-color-fc-button-green-tint);
+}
+
+.ion-color-cinza {
+  --ion-color-base: var(--ion-color-cinza);
+  --ion-color-base-rgb: var(--ion-color-cinza-rgb);
+  --ion-color-contrast: var(--ion-color-cinza-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-cinza-contrast-rgb);
+  --ion-color-shade: var(--ion-color-cinza-shade);
+  --ion-color-tint: var(--ion-color-cinza-tint);
+}
+
+.ion-color-fc-cinza-vermelho {
+  --ion-color-base: var(--ion-color-fc-cinza-vermelho);
+  --ion-color-base-rgb: var(--ion-color-fc-cinza-vermelho-rgb);
+  --ion-color-contrast: var(--ion-color-fc-cinza-vermelho-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-fc-cinza-vermelho-contrast-rgb);
+  --ion-color-shade: var(--ion-color-fc-cinza-vermelho-shade);
+  --ion-color-tint: var(--ion-color-fc-cinza-vermelho-tint);
+}
+
+.ion-color-white-red {
+  --ion-color-base: var(--ion-color-white-red);
+  --ion-color-base-rgb: var(--ion-color-white-red-rgb);
+  --ion-color-contrast: var(--ion-color-white-red-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-white-red-contrast-rgb);
+  --ion-color-shade: var(--ion-color-white-red-shade);
+  --ion-color-tint: var(--ion-color-white-red-tint);
+}
+
+ion-header {
+  height: auto;
+  ion-toolbar {
+    --min-height: 52px !important;
+
+    ion-buttons {
+      min-height: 40px !important;
+
+      ion-button {
+        min-width: 48px !important;
+        min-height: 48px !important;
+        --overflow: visible !important;
+        --border-radius: 50% !important;
+        margin: 2px 4px;
+
+        ion-icon {
+          font-size: 200%;
+        }
+
+        .badge-position {
+          margin-left: 10px;
+          margin-top: 8px;
+          border-radius: 50%;
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+
+// Diretivas CSS
+ion-searchbar[no-shadow] {
+	& input {
+		box-shadow: none !important;
+	}
 }
 

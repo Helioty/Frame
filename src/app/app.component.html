@@ -1,14 +1,18 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <ion-split-pane contentId="main-content" when="false">
     <ion-menu contentId="main-content" type="overlay">
       <ion-header>
         <ion-toolbar color="fc">
           <ion-title class="ion-justify-content-center">
             <ion-grid>
               <ion-row class="ion-justify-content-center">
-                <ion-col size="4" class="ion-no-padding">
-                  <img class="imgHeader" src="assets/imagens/02-login/idcliente.png" />
-                </ion-col>
+                <img class="imgHeader" *ngIf="!noPhoto" src="assets/images/02-login/idcliente.png" />
+                <img class="imgHeader" *ngIf="noPhoto" src="data:image/jpeg;base64,{{foto}}" />
+              </ion-row>
+              <ion-row class="ion-justify-content-center">
+                <h2 style="text-align: center;">
+                  {{ nome }}
+                </h2>
               </ion-row>
             </ion-grid>
           </ion-title>

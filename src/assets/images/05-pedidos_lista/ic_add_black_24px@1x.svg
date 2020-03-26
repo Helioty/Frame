@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_add_black_24px@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="home---Pedidos-em-aberto" transform="translate(-306.000000, -883.000000)">
+            <g id="ic_add_black_24px" transform="translate(299.000000, 876.000000)">
+                <polygon id="Shape" points="0 0 36 0 36 36 0 36"></polygon>
+                <polygon id="Shape" fill="#FFFFFF" fill-rule="nonzero" points="28.5 19.5 19.5 19.5 19.5 28.5 16.5 28.5 16.5 19.5 7.5 19.5 7.5 16.5 16.5 16.5 16.5 7.5 19.5 7.5 19.5 16.5 28.5 16.5"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,94 @@
+
+
+@media (orientation: landscape) {
+    .conteudo {
+        background-image: url("/assets/images/02-login/background-desktop.png") !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+    }
+}
+@media (orientation: portrait) {
+    .conteudo {
+        background-image: url("/assets/images/02-login/background.png") !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+    }
+}
+
+.userImgRow {
+
+    img {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 50%;
+        max-width: 100px !important;
+        max-height: 100px !important;
+        overflow: hidden !important;
+        border: 0.2rem solid #f4f4f4 !important;
+    }
+    
+    h4 {
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 1.5rem;
+        margin-top: 0.1rem;
+    }
+    
+}
+
+
+.loginFormSection {
+    max-width: 600px;    
+    .inputField {
+        border-bottom: 0.1rem solid #fff;
+    }
+    .ovalrow {
+        .commonButton {
+            width: 100%;
+            height: 3.0rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            background: #fff;
+            font-weight: 600;
+        }
+    }
+    .notauser {
+        ion-col {
+            text-align: center;
+            color: #fff;
+            font-weight: 300;
+            margin-top: 1.5rem;
+        }
+    }
+    .transparentButton {
+        .commonButton {
+            width: 100%;
+            height: 3.0rem;
+            border-radius: 0.5rem;
+            color: #fff;
+            margin-top: 0.2rem;
+            background: rgba(0, 0, 0, 0.25);
+            font-weight: 600;
+        }
+    }
+}
+
+@media only screen and (min-width: 300px) {
+    .loginFormSection {
+        max-width: 250px;
+    }
+}
+@media only screen and (min-width: 415px) {
+    .loginFormSection {
+        max-width: 350px;
+    }
+}
+@media only screen and (min-width: 576px) {
+    .loginFormSection {
+        max-width: 500px;
+    }
+}
+

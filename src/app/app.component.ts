@@ -1,42 +1,42 @@
 import { Component } from '@angular/core';
-
-import { Platform, MenuController, AlertController } from '@ionic/angular';
+import { Platform, MenuController, AlertController, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Router } from '@angular/router';
 
-import { BaseCommon } from './../commons/base-common';
+import { AuthGuard } from 'src/app/guards/auth/auth.guard';
+import { CommonService } from 'src/app/services/common/common.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
+
 export class AppComponent {
   public appPages = [
     {
       title: 'Home',
       url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      icon: 'clipboard-outline'
     },
     {
       title: 'Logout',
       url: '/login',
-      icon: 'log-out'
+      icon: 'log-out-outline'
     }
   ];
 
+  public foto: any;
+  public nome: any;
+  public noPhoto = false;
+
   constructor(
+    private authGuard: AuthGuard,
     public alertCtrl: AlertController,
-    public common: BaseCommon,
+    public common: CommonService,
     private menu: MenuController,
     private platform: Platform,
-    private router: Router,
+    private navControl: NavController,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
@@ -44,46 +44,59 @@ export class AppComponent {
   }
 
   initializeApp() {
-    console.log(this.platform)
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      // this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.statusBar.backgroundColorByHexString('#C40318');
       this.menu.enable(false);
     });
   }
 
   buttonAction(page: any) {
     switch (page.title) {
-      case ("Logout"): {
-        this.showAlertLogout()
-      } break;
+      case ('Logout'):
+        this.showAlertLogout();
+        break;
 
-      case ("Home"): {
-        this.router.navigateByUrl(page.url)
-      } break;
-
-      case ("List"): {
-        this.router.navigateByUrl(page.url)
-      } break;
-
-      default: {
-        console.log("default of button Action!")
-      }
+      default:
+        console.log('default of button Action!');
+        this.navControl.navigateRoot([page.url]);
+        break;
     }
   }
 
   async showAlertLogout() {
     const alert = await this.alertCtrl.create({
-      header: "Logout",
-      subHeader: "Deseja sair?",
+      header: 'Logout',
+      subHeader: 'Deseja sair?',
       buttons: ['NÃO', {
         text: 'SIM',
         handler: () => {
-          this.router.navigate(['login'])
+          this.authGuard.logged = false;
+          this.navControl.navigateRoot(['login']);
         }
       }]
     });
     await alert.present();
+  }
+
+  getStatus(): any {
+
+    if (localStorage.getItem('token')) {
+      if (localStorage.getItem('foto')) {
+        this.foto = localStorage.getItem('foto');
+      }
+
+      if (localStorage.getItem('nome')) {
+        this.nome = localStorage.getItem('nome');
+      }
+
+      if (localStorage.getItem('foto') !== 'null' && localStorage.getItem('foto') !== undefined) {
+        this.noPhoto = true;
+      }
+
+    }
+
   }
 
 }
