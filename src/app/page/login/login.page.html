@@ -37,7 +37,8 @@
 
           <ion-col size="10" *ngIf="!isLoggedIn" class="textContainer ion-text-start">
             <ion-input color="light" placeholder="Login" class="ion-no-padding ion-text-uppercase"
-              [(ngModel)]="loginData.login" type="text" (ionFocus)="inFoco()" (ionBlur)="inFoco()"></ion-input>
+              (keyup.enter)="inputS.setFocus();" [(ngModel)]="loginData.login" type="text" (ionFocus)="inFoco()"
+              (ionBlur)="inFoco()"></ion-input>
           </ion-col>
         </ion-row>
 
@@ -48,7 +49,7 @@
           </ion-col>
 
           <ion-col size="10" class="textContainer ion-text-start">
-            <ion-input color="light" placeholder="Senha" class="ion-no-padding ion-text-uppercase"
+            <ion-input color="light" placeholder="Senha" class="ion-no-padding ion-text-uppercase" #inputS
               [(ngModel)]="loginData.senha" type="password" (ionFocus)="inFoco()" (ionBlur)="inFoco()"
               (keyup.enter)="entrar()"></ion-input>
           </ion-col>
