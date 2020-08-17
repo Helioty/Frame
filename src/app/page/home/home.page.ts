@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common/common.service';
 
 @Component({
@@ -8,7 +8,6 @@ import { CommonService } from 'src/app/services/common/common.service';
 })
 export class HomePage implements OnInit {
 
-  @ViewChild('scanner', { static: true }) scanner: HTMLElement;
   public valorScanner: string;
   private focusStatus = true;
   private taskScanner: any;
@@ -44,10 +43,9 @@ export class HomePage implements OnInit {
               (<HTMLInputElement>scanners[i]).focus();
             }
           }
-          this.scanner.focus();
         }
       } catch (error) { }
-    }, 400);
+    }, 350);
   }
 
   focusPlay() {
@@ -56,12 +54,19 @@ export class HomePage implements OnInit {
 
   focusPause() {
     this.focusStatus = false;
-    document.getElementById('scanner').blur();
+    const scanners = document.body.getElementsByClassName('scanner');
+    for (const i in scanners) {
+      if (Number(i) === (scanners.length - 1)) {
+        (<HTMLInputElement>scanners[i]).blur();
+      }
+    }
   }
 
   // Encerra o loop de foco no input
   focusOff() {
     clearInterval(this.taskScanner);
   }
+
+  scaneado(evento: any) { }
 
 }
