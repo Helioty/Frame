@@ -10,7 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { HideKeyboardModule } from 'hide-keyboard';
+// import { HideKeyboardModule } from 'hide-keyboard';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppConfigService } from 'src/app/config/app.config.service';
@@ -26,13 +26,12 @@ console.log(ENV.mode);
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HideKeyboardModule,
+    // HideKeyboardModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ServicesModule
