@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-// import { HideKeyboardModule } from 'hide-keyboard';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { IonicModule } from '@ionic/angular';
 
 import { HomePage } from './home.page';
@@ -19,7 +19,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    // HideKeyboardModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [HomePage]

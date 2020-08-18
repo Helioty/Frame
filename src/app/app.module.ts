@@ -10,7 +10,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-// import { HideKeyboardModule } from 'hide-keyboard';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppConfigService } from 'src/app/config/app.config.service';
@@ -21,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ENV, environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ServicesModule } from './services/services.module';
+import { SharedModule } from './shared/shared.module';
 console.log(ENV.mode);
 
 
@@ -31,10 +31,10 @@ console.log(ENV.mode);
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    // HideKeyboardModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    ServicesModule
+    ServicesModule,
+    SharedModule
   ],
   providers: [
     AndroidFullScreen,
