@@ -40,7 +40,7 @@ export class HomePage implements OnInit {
           const scanners = document.body.getElementsByClassName('scanner');
           for (const i in scanners) {
             if (Number(i) === (scanners.length - 1)) {
-              (<HTMLInputElement>scanners[i]).focus();
+              (scanners[i] as HTMLInputElement).focus();
             }
           }
         }
@@ -57,7 +57,7 @@ export class HomePage implements OnInit {
     const scanners = document.body.getElementsByClassName('scanner');
     for (const i in scanners) {
       if (Number(i) === (scanners.length - 1)) {
-        (<HTMLInputElement>scanners[i]).blur();
+        (scanners[i] as HTMLInputElement).blur();
       }
     }
   }
