@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, Platform, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
-import { CommonService } from 'src/app/services/common/common.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
-
-import { ENV } from 'src/environments/environment';
+import { MenuController, NavController, Platform } from '@ionic/angular';
 import { AppConfigService } from 'src/app/config/app.config.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { CommonService } from 'src/app/services/common/common.service';
+import { ENV } from 'src/environments/environment';
 import { AppComponent } from '../../app.component';
 
 @Component({

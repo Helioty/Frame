@@ -31,7 +31,3 @@ npm-debug.log*
 /www
 
 org.gradle.daemon=false/
-
-# for capacitor 
-/android
-/electron
