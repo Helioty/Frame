@@ -1,1 +1,48 @@
-<p>menu works!</p>
+<ion-content>
+    <div class="menu-header-bg"></div>
+  
+    <div class="menu-header-content">
+      <img class="imgHeader" *ngIf="noPhoto" src="assets/images/02-login/idcliente.png" />
+      <img class="imgHeader" *ngIf="!noPhoto" src="data:image/jpeg;base64,{{ foto }}" />
+      <ion-label color="light">
+        <h2>
+          {{ nome }}
+        </h2>
+      </ion-label>
+    </div>
+  
+    <div class="menu-list-button">
+      <ion-list lines="none">
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+          <ion-item
+            button
+            [routerLink]="p.url"
+            routerDirection="root"
+            routerLinkActive="active"
+          >
+            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+            <ion-label>
+              {{ p.title }}
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+  
+        <ion-menu-toggle auto-hide="false">
+          <ion-item button (click)="logout()">
+            <ion-icon slot="start" name="log-out-outline"></ion-icon>
+            <ion-label>Logout</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </div>
+  </ion-content>
+  
+  <ion-footer>
+    <ion-item lines="none">
+      <ion-button (click)="logout()" fill="clear" slot="end">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-button>
+    </ion-item>
+  </ion-footer>
+  
