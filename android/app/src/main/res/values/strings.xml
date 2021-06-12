@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">secondTestCap</string>
+    <string name="app_name">Frame with Ionic/Angular and Capacitor</string>
     <string name="title_activity_main">secondTestCap</string>
     <string name="package_name">br.com.ferreiracosta.frame</string>
     <string name="custom_url_scheme">br.com.ferreiracosta.frame</string>

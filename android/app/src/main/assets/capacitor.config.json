@@ -1,7 +1,10 @@
 {
 	"appId": "br.com.ferreiracosta.frame",
-	"appName": "secondTestCap",
+	"appName": "Frame with Ionic/Angular and Capacitor",
 	"android": {},
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"server": {
+		"url": "http://192.168.5.66:8100"
+	}
 }

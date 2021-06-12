@@ -69,4 +69,8 @@ export class HomePage implements OnInit {
 
   scaneado(evento: any) { }
 
+  showVersion() {
+    this.common.showVersion();
+  }
+
 }

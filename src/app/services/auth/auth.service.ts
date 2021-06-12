@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { AuthGuard } from '../../guards/auth/auth.guard';
-import { API_URL } from 'src/app/config/app.config.service';
-import { ENV } from 'src/environments/environment';
+import { API_URL, ENV } from 'src/app/config/app.config.service';
 import { BaseService } from '../base-service.service';
 
 @Injectable({

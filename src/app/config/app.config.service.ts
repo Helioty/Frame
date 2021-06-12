@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ENV } from 'src/environments/environment';
 import { CommonService } from 'src/app/services/common/common.service';
+import { IEnvironment } from './app.config.interface';
 
 export let API_URL = '';
 
-export function getHTTP(): any {
-  return API_URL;
+export const ENV: IEnvironment = {
+  WS_AUTH: 'https://login.',
+  WS_VERSION: '',
+  WS_PRODUTO: 'https://produto.',
+  WS_CRM: 'https://crm.',
+  WS_VENDAS: 'https://vendas.',
+  WS_PUBLIC: 'https://publico.',
+  WS_COMMONS: 'https://comum.',
 }
 
 @Injectable({
@@ -21,19 +27,11 @@ export class AppConfigService {
     private common: CommonService,
   ) {
 
-    if (ENV.mode === 'Production') {
 
-      this.getApiUrl = 'https://publico.api.imb/getUrlServiceOKD';
-      this.getURL();
-      getHTTP();
-
-    } else {
-
-      this.getApiUrl = 'https://publico.staging.imb/getUrlServiceOKD';
-      this.getURL();
-      getHTTP();
-
-    }
+    this.getApiUrl = '';
+    this.getURL();
+    this.getApiUrl = '';
+    this.getURL();
 
   }
 

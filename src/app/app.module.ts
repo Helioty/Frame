@@ -1,22 +1,17 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import { AppConfigService } from 'src/app/config/app.config.service';
-
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-
-import { ENV, environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { AppConfigService } from 'src/app/config/app.config.service';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { ServicesModule } from './services/services.module';
 import { SharedModule } from './shared/shared.module';
-console.log(ENV.mode);
-
+console.log(environment.production ? 'Production' : 'Development');
 
 @NgModule({
   declarations: [AppComponent],

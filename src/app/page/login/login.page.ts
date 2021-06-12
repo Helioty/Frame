@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MenuController, NavController, Platform } from '@ionic/angular';
 import { AppConfigService } from 'src/app/config/app.config.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CommonService } from 'src/app/services/common/common.service';
-import { ENV } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { AppComponent } from '../../app.component';
 
 @Component({
@@ -31,15 +30,14 @@ export class LoginPage implements OnInit {
     public common: CommonService,
     private menu: MenuController,
     private platform: Platform,
-    private navControl: NavController,
-    private router: Router
+    private navControl: NavController
   ) {
 
-    if (ENV.mode === 'Production') {
+    if (environment.production) {
       this.loginData.login = '';
       this.loginData.senha = '';
     } else {
-      this.common.showToast(ENV.mode);
+      this.common.showToast('Development');
       this.loginData.login = 'R6543MRM';
       this.loginData.senha = 'R6543MRM';
     }
