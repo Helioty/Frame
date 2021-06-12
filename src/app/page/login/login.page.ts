@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, NavController, Platform } from '@ionic/angular';
 import { AppConfigService } from 'src/app/config/app.config.service';
-import { IAuth } from 'src/app/shared/services/auth/auth.interface';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
-import { CommonService } from 'src/app/shared/services/common/common.service';
+import { IAuth } from 'src/app/services/auth/auth.interface';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { CommonService } from 'src/app/services/common/common.service';
 import { environment } from 'src/environments/environment';
 
 @Component({

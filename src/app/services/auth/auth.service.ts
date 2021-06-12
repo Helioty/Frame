@@ -3,7 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { API_URL, ENV } from 'src/app/config/app.config.service';
 import { AuthGuard } from 'src/app/shared/guards/auth/auth.guard';
-import { BaseService } from 'src/app/shared/services/http/base.service';
+import { BaseService } from 'src/app/services/http/base.service';
 import { CommonService } from '../common/common.service';
 import { ScannerService } from '../scanner/scanner.service';
 import { IAuth } from './auth.interface';
@@ -17,7 +17,7 @@ export class AuthService {
   constructor(
     private authGuard: AuthGuard,
     private common: CommonService,
-    private scannerS: ScannerService,
+    private scanner: ScannerService,
     private navControl: NavController,
     private http: BaseService
   ) {
@@ -58,7 +58,7 @@ export class AuthService {
   public showAlertLogout(): void {
     const handler = () => {
       this.authGuard.setStatus = false;
-      this.scannerS.focusOff();
+      this.scanner.focusOff();
       this.navControl.navigateRoot(['login']);
     };
     this.common.showAlertAction('Logout', 'Deseja sair?', handler);

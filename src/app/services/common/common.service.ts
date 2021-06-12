@@ -6,6 +6,7 @@ import {
   Platform,
   ToastController,
 } from '@ionic/angular';
+import { ScannerService } from '../scanner/scanner.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class CommonService {
   private appInfo: AppInfo;
 
   constructor(
+    private readonly scanner: ScannerService,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
@@ -56,12 +58,12 @@ export class CommonService {
    * @description Pausa o foco do Scanner e exibe um IonLoadingElement, ao desativar o Loading o foco do Scanner é reativado.
    */
   async showLoader(): Promise<void> {
-    this.scannerS.focusPause();
+    this.scanner.focusPause();
     this.loading = await this.loadingCtrl.create({
       spinner: 'circular',
     });
     this.loading.onWillDismiss().then(() => {
-      this.scannerS.focusPlay();
+      this.scanner.focusPlay();
     });
     this.loading.present();
   }
@@ -72,13 +74,13 @@ export class CommonService {
    * @param msg Mensagem para ser exibida no Loading.
    */
   async showLoaderCustom(msg: string): Promise<void> {
-    this.scannerS.focusPause();
+    this.scanner.focusPause();
     this.loading = await this.loadingCtrl.create({
       spinner: 'circular',
       message: msg,
     });
     this.loading.onWillDismiss().then(() => {
-      this.scannerS.focusPlay();
+      this.scanner.focusPlay();
     });
     this.loading.present();
   }
@@ -111,14 +113,14 @@ export class CommonService {
    * @param msg Mensagem do IonAlert.
    */
   async showAlert(titulo: string, msg: string): Promise<void> {
-    this.scannerS.focusPause();
+    this.scanner.focusPause();
     const alert = await this.alertCtrl.create({
       header: titulo,
       message: msg,
       buttons: ['OK'],
     });
     alert.onWillDismiss().then(() => {
-      this.scannerS.focusPlay();
+      this.scanner.focusPlay();
     });
     await alert.present();
   }
@@ -130,16 +132,16 @@ export class CommonService {
    * @param erro Mensagem de erro.
    */
   async showAlertError(titulo: string, erro: string): Promise<void> {
-    this.scannerS.focusPause();
+    this.scanner.focusPause();
     const alert = await this.alertCtrl.create({
       header: titulo,
-      subHeader: this.appName + (this.version !== '' ? ' - Versão: ' + this.version : ''),
+      subHeader: this.appInfo.name + (` - ${this.appInfo.version}`),
       message: erro,
       buttons: ['FECHAR'],
       cssClass: 'alertError',
     });
     alert.onWillDismiss().then(() => {
-      this.scannerS.focusPlay();
+      this.scanner.focusPlay();
     });
     await alert.present();
   }
@@ -162,7 +164,7 @@ export class CommonService {
     showCancel = true,
     cssClasses: string[] = []
   ): Promise<void> {
-    this.scannerS.focusPause();
+    this.scanner.focusPause();
     const buttons = [];
 
     if (showCancel) {
@@ -187,7 +189,7 @@ export class CommonService {
       buttons,
     });
     alert.onWillDismiss().then(() => {
-      this.scannerS.focusPlay();
+      this.scanner.focusPlay();
     });
     await alert.present();
   }
