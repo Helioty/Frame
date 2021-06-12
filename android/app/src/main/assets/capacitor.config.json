@@ -1,0 +1,7 @@
+{
+	"appId": "br.com.ferreiracosta.frame",
+	"appName": "secondTestCap",
+	"android": {},
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
