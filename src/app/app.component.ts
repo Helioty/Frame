@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Platform, MenuController, AlertController, NavController } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AuthGuard } from 'src/app/guards/auth/auth.guard';
 import { CommonService } from 'src/app/services/common/common.service';
@@ -36,9 +34,7 @@ export class AppComponent {
     public common: CommonService,
     private menu: MenuController,
     private platform: Platform,
-    private navControl: NavController,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private navControl: NavController
   ) {
     this.initializeApp();
   }
@@ -46,8 +42,8 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       // this.statusBar.styleDefault();
-      this.splashScreen.hide();
-      this.statusBar.backgroundColorByHexString('#C40318');
+      // this.splashScreen.hide();
+      // this.statusBar.backgroundColorByHexString('#C40318');
       this.menu.enable(false);
     });
   }

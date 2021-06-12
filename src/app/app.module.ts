@@ -4,12 +4,6 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { AppVersion } from '@ionic-native/app-version/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
-import { Network } from '@ionic-native/network/ngx';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppConfigService } from 'src/app/config/app.config.service';
@@ -37,12 +31,7 @@ console.log(ENV.mode);
     SharedModule
   ],
   providers: [
-    AndroidFullScreen,
     AppConfigService,
-    AppVersion,
-    StatusBar,
-    SplashScreen,
-    Network,
     Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
