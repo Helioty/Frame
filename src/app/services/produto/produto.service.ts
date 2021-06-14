@@ -8,14 +8,12 @@ import { API_URL, ENV } from 'src/app/config/app.config.service';
   providedIn: 'root'
 })
 export class ProdutoService {
-
   constructor(
     private alertCtrl: AlertController,
-    private baseService: BaseService,
+    private http: BaseService,
     private common: CommonService,
     private navControl: NavController
   ) { }
-
 
   // // by Ryuge 18/09/2018
   // // edit by Helio 19/03/2020
@@ -23,7 +21,7 @@ export class ProdutoService {
   //   const link = ENV.WS_PRODUTO + API_URL + 'listImages/' + codigo;
 
   //   return new Promise((resolve, reject) => {
-  //     this.baseService.get(link).then((result: any) => {
+  //     this.http.get(link).then((result: any) => {
   //       resolve(result);
   //     }, (error) => {
   //       reject(error);
@@ -36,12 +34,11 @@ export class ProdutoService {
   //   const link = ENV.WS_PRODUTO + API_URL + 'detalhe/' + codigoProduto;
 
   //   return new Promise((resolve, reject) => {
-  //     this.baseService.getNoShowError(link).then((result: any) => {
+  //     this.http.getNoShowError(link).then((result: any) => {
   //       resolve(result);
   //     }, (error) => {
   //       reject(error);
   //     });
   //   });
   // }
-
 }

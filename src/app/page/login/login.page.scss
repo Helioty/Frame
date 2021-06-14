@@ -20,9 +20,9 @@ ion-grid {
   align-content: center;
 }
 
-.imgHeader {
-  margin-top: -10vh;
-}
+// .imgHeader {
+//   margin-top: -3vh;
+// }
 
 .userImgRow {
   img {
@@ -47,6 +47,7 @@ ion-grid {
 .loginFormSection {
   form {
     max-width: 350px;
+    overflow-y: scroll;
   }
 
   .inputField {

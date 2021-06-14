@@ -1,4 +1,4 @@
-package br.com.ferreiracosta.frame;
+package br.com.ferreiracosta.frame.angular;
 
 import com.getcapacitor.BridgeActivity;
 

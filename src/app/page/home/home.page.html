@@ -2,14 +2,13 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     
-    <ion-title>home</ion-title>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <input hideKeyboard class="scanner" [(ngModel)]="valorScanner" (keyup.enter)="scaneado($event)">
-
-  <ion-button (click)="showVersion()">SHOW VERSION</ion-button>
+  <input hideKeyboard class="scanner" [(ngModel)]="scanner.valorScanner" (keyup.enter)="scaneado($event.target.value)">
 </ion-content>

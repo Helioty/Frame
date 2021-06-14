@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { CommonService } from 'src/app/services/common/common.service';
+import { ScannerService } from 'src/app/services/scanner/scanner.service';
 
 @Component({
   selector: 'app-home',
@@ -7,70 +9,27 @@ import { CommonService } from 'src/app/services/common/common.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  constructor(
+    public readonly scanner: ScannerService,
+    private readonly common: CommonService,
+    private readonly menu: MenuController
+  ) {}
 
-  public valorScanner: string;
-  private focusStatus = true;
-  private taskScanner: any;
-
-  constructor(private common: CommonService) { }
-
-  ngOnInit() { }
+  ngOnInit() {
+    this.menu.enable(true);
+  }
 
   ionViewWillEnter() {
-    this.focusOn();
-    this.common.goToFullScreen();
+    this.scanner.focusOn();
   }
 
-  ionViewDidEnter() {
-    this.common.goToFullScreen();
-  }
+  ionViewDidEnter() {}
 
   ionViewWillLeave() {
-    this.focusOff();
+    this.scanner.focusOff();
   }
 
-  ionViewDidLeave() { }
+  ionViewDidLeave() {}
 
-  // Cria o loop que da foco no input
-  focusOn() {
-    this.taskScanner = setInterval(() => {
-      try {
-        this.valorScanner = '';
-        if (this.focusStatus) {
-          const scanners = document.body.getElementsByClassName('scanner');
-          for (const i in scanners) {
-            if (Number(i) === (scanners.length - 1)) {
-              (<HTMLInputElement>scanners[i]).focus();
-            }
-          }
-        }
-      } catch (error) { }
-    }, 350);
-  }
-
-  focusPlay() {
-    this.focusStatus = true;
-  }
-
-  focusPause() {
-    this.focusStatus = false;
-    const scanners = document.body.getElementsByClassName('scanner');
-    for (const i in scanners) {
-      if (Number(i) === (scanners.length - 1)) {
-        (<HTMLInputElement>scanners[i]).blur();
-      }
-    }
-  }
-
-  // Encerra o loop de foco no input
-  focusOff() {
-    clearInterval(this.taskScanner);
-  }
-
-  scaneado(evento: any) { }
-
-  showVersion() {
-    this.common.showVersion();
-  }
-
+  scaneado(value: string) {}
 }

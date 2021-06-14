@@ -15,11 +15,11 @@ export class AuthService {
   loginEvent = new EventEmitter<IAuth>();
 
   constructor(
-    private authGuard: AuthGuard,
-    private common: CommonService,
-    private scanner: ScannerService,
-    private navControl: NavController,
-    private http: BaseService
+    private readonly authGuard: AuthGuard,
+    private readonly common: CommonService,
+    private readonly scanner: ScannerService,
+    private readonly navControl: NavController,
+    private readonly http: BaseService
   ) {
     this.restoreLoginData();
   }
@@ -91,6 +91,7 @@ export class AuthService {
     const date = new Date();
     localStorage.setItem('token', data.authorization);
     localStorage.setItem('login', login);
+    localStorage.setItem('id', String(data.id));
     localStorage.setItem('loginDate', String(date.getDate()));
     localStorage.setItem('empresa', String(data.empresa.id));
     localStorage.setItem('loginServiceData', JSON.stringify(data));

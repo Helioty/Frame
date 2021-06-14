@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #C40318;
+  --ion-color-primary: #c40318;
   --ion-color-primary-rgb: 196, 3, 24;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -76,7 +76,7 @@
   --ion-color-light-tint: #f5f6f9;
 
   /** fc **/
-  --ion-color-fc: #C40318;
+  --ion-color-fc: #c40318;
   --ion-color-fc-rgb: 196, 3, 24;
   --ion-color-fc-contrast: #ffffff;
   --ion-color-fc-contrast-rgb: 255, 255, 255;
@@ -84,50 +84,50 @@
   --ion-color-fc-tint: #ca1c2f;
 
   /** fc blue **/
-  --ion-color-fc-blue: #59B3D9;
-  --ion-color-fc-blue-rgb: 89,179,217;
+  --ion-color-fc-blue: #59b3d9;
+  --ion-color-fc-blue-rgb: 89, 179, 217;
   --ion-color-fc-blue-contrast: #000000;
-  --ion-color-fc-blue-contrast-rgb: 0,0,0;
+  --ion-color-fc-blue-contrast-rgb: 0, 0, 0;
   --ion-color-fc-blue-shade: #4e9ebf;
   --ion-color-fc-blue-tint: #6abbdd;
 
   /** fc orange **/
-  --ion-color-fc-orange: #EF6F38;
-  --ion-color-fc-orange-rgb: 239,111,56;
+  --ion-color-fc-orange: #ef6f38;
+  --ion-color-fc-orange-rgb: 239, 111, 56;
   --ion-color-fc-orange-contrast: #ffffff;
-  --ion-color-fc-orange-contrast-rgb: 0,0,0;
+  --ion-color-fc-orange-contrast-rgb: 0, 0, 0;
   --ion-color-fc-orange-shade: #d26231;
   --ion-color-fc-orange-tint: #f17d4c;
 
   /** fc button **/
-  --ion-color-fc-button: #C00D0E;
+  --ion-color-fc-button: #c00d0e;
   --ion-color-fc-button-rgb: 12, 209, 232;
   --ion-color-fc-button-contrast: #ffffff;
   --ion-color-fc-button-contrast-rgb: 255, 255, 255;
   --ion-color-fc-button-shade: #a90b0c;
   --ion-color-fc-button-tint: #c62526;
 
-  //** fc button green ** 
-  --ion-color-fc-button-green: #32A651;
-  --ion-color-fc-button-green-rgb: 50,166,81;
+  //** fc button green **
+  --ion-color-fc-button-green: #32a651;
+  --ion-color-fc-button-green-rgb: 50, 166, 81;
   --ion-color-fc-button-green-contrast: #ffffff;
-  --ion-color-fc-button-green-contrast-rgb: 255,255,255;
+  --ion-color-fc-button-green-contrast-rgb: 255, 255, 255;
   --ion-color-fc-button-green-shade: #2c9247;
   --ion-color-fc-button-green-tint: #47af62;
 
   // Cinza
   --ion-color-cinza: #f5f5f5;
-  --ion-color-cinza-rgb: 245,245,245;
+  --ion-color-cinza-rgb: 245, 245, 245;
   --ion-color-cinza-contrast: #000000;
-  --ion-color-cinza-contrast-rgb: 0,0,0;
+  --ion-color-cinza-contrast-rgb: 0, 0, 0;
   --ion-color-cinza-shade: #d8d8d8;
   --ion-color-cinza-tint: #f6f6f6;
 
   // Cinza avermelhado
   --ion-color-fc-cinza-vermelho: #695b5e;
-  --ion-color-fc-cinza-vermelho-rgb: 105,91,94;
+  --ion-color-fc-cinza-vermelho-rgb: 105, 91, 94;
   --ion-color-fc-cinza-vermelho-contrast: #ffffff;
-  --ion-color-fc-cinza-vermelho-contrast-rgb: 255,255,255;
+  --ion-color-fc-cinza-vermelho-contrast-rgb: 255, 255, 255;
   --ion-color-fc-cinza-vermelho-shade: #5c5053;
   --ion-color-fc-cinza-vermelho-tint: #786b6e;
 
@@ -135,7 +135,7 @@
   --ion-color-white-red: #ffffff;
   --ion-color-white-red-rgb: 12, 209, 232;
   --ion-color-white-red-contrast: #c62526;
-  --ion-color-white-red-contrast-rgb: 0,0,0;
+  --ion-color-white-red-contrast-rgb: 0, 0, 0;
   --ion-color-white-red-shade: #e0e0e0;
   --ion-color-white-red-tint: #ffffff;
 }
@@ -211,41 +211,3 @@
   --ion-color-shade: var(--ion-color-white-red-shade);
   --ion-color-tint: var(--ion-color-white-red-tint);
 }
-
-ion-header {
-  height: auto;
-  ion-toolbar {
-    --min-height: 52px !important;
-
-    ion-buttons {
-      min-height: 40px !important;
-
-      ion-button {
-        min-width: 48px !important;
-        min-height: 48px !important;
-        --overflow: visible !important;
-        --border-radius: 50% !important;
-        margin: 2px 4px;
-
-        ion-icon {
-          font-size: 200%;
-        }
-
-        .badge-position {
-          margin-left: 10px;
-          margin-top: 8px;
-          border-radius: 50%;
-          position: absolute;
-        }
-      }
-    }
-  }
-}
-
-// Diretivas CSS
-ion-searchbar[no-shadow] {
-	& input {
-		box-shadow: none !important;
-	}
-}
-

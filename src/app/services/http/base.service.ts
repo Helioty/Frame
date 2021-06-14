@@ -1,14 +1,17 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { catchError } from 'rxjs/operators'
-import { CommonService } from "src/app/services/common/common.service";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { CommonService } from 'src/app/services/common/common.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class BaseService {
-  constructor(private http: HttpClient, private common: CommonService) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly common: CommonService
+  ) {}
 
   /**
    * @author helio.souza
@@ -25,24 +28,19 @@ export class BaseService {
   ): Observable<T> {
     if (options.token) {
       if (headers) {
-        headers.set("x-auth-token", localStorage.getItem("token"));
+        headers.set('x-auth-token', localStorage.getItem('token'));
       } else {
-        headers = new HttpHeaders().set(
-          "x-auth-token",
-          localStorage.getItem("token")
-        );
+        headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
       }
     }
-    return this.http
-      .get<T>(url, { headers })
-      .pipe(
-        catchError((err) => {
-          if (options.showError) {
-            this.showError(err);
-          }
-          throw err;
-        })
-      );
+    return this.http.get<T>(url, { headers }).pipe(
+      catchError((err) => {
+        if (options.showError) {
+          this.showError(err);
+        }
+        throw err;
+      })
+    );
   }
 
   /**
@@ -62,24 +60,19 @@ export class BaseService {
   ): Observable<T> {
     if (options.token) {
       if (headers) {
-        headers.set("x-auth-token", localStorage.getItem("token"));
+        headers.set('x-auth-token', localStorage.getItem('token'));
       } else {
-        headers = new HttpHeaders().set(
-          "x-auth-token",
-          localStorage.getItem("token")
-        );
+        headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
       }
     }
-    return this.http
-      .post<T>(url, body, { headers })
-      .pipe(
-        catchError((err) => {
-          if (options.showError) {
-            this.showError(err);
-          }
-          throw err;
-        })
-      );
+    return this.http.post<T>(url, body, { headers }).pipe(
+      catchError((err) => {
+        if (options.showError) {
+          this.showError(err);
+        }
+        throw err;
+      })
+    );
   }
 
   /**
@@ -99,24 +92,19 @@ export class BaseService {
   ): Observable<T> {
     if (options.token) {
       if (headers) {
-        headers.set("x-auth-token", localStorage.getItem("token"));
+        headers.set('x-auth-token', localStorage.getItem('token'));
       } else {
-        headers = new HttpHeaders().set(
-          "x-auth-token",
-          localStorage.getItem("token")
-        );
+        headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
       }
     }
-    return this.http
-      .put<T>(url, body, { headers })
-      .pipe(
-        catchError((err) => {
-          if (options.showError) {
-            this.showError(err);
-          }
-          throw err;
-        })
-      );
+    return this.http.put<T>(url, body, { headers }).pipe(
+      catchError((err) => {
+        if (options.showError) {
+          this.showError(err);
+        }
+        throw err;
+      })
+    );
   }
 
   /**
@@ -134,24 +122,19 @@ export class BaseService {
   ): Observable<T> {
     if (options.token) {
       if (headers) {
-        headers.set("x-auth-token", localStorage.getItem("token"));
+        headers.set('x-auth-token', localStorage.getItem('token'));
       } else {
-        headers = new HttpHeaders().set(
-          "x-auth-token",
-          localStorage.getItem("token")
-        );
+        headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
       }
     }
-    return this.http
-      .delete<T>(url, { headers })
-      .pipe(
-        catchError((err) => {
-          if (options.showError) {
-            this.showError(err);
-          }
-          throw err;
-        })
-      );
+    return this.http.delete<T>(url, { headers }).pipe(
+      catchError((err) => {
+        if (options.showError) {
+          this.showError(err);
+        }
+        throw err;
+      })
+    );
   }
 
   /**
@@ -161,17 +144,13 @@ export class BaseService {
   showError(error: HttpErrorResponse): void {
     console.log(error);
     if (error.error && error.error.detail) {
-      this.common.showAlertError("Atenção!", error.error.detail);
-    } else if (
-      error.error.error &&
-      error.error.message &&
-      error.error.statusCode
-    ) {
+      this.common.showAlertError('Atenção!', error.error.detail);
+    } else if (error.error.error && error.error.message && error.error.statusCode) {
       this.common.showAlertError(error.error.error, error.error.message);
     } else if (error.status === 0) {
       this.common.showAlertError(error.statusText, error.message);
     } else {
-      this.common.showAlertError("Atenção!", JSON.stringify(error));
+      this.common.showAlertError('Atenção!', JSON.stringify(error));
     }
   }
 }

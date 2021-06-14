@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IAuth } from 'src/app/shared/services/auth/auth.interface';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { IAuth } from 'src/app/services/auth/auth.interface';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
   public nome: string;
   public noPhoto = true;
 
-  constructor(private auth: AuthService) {}
+  constructor(private readonly auth: AuthService) {}
 
   ngOnInit(): void {
     this.auth.loginEvent.subscribe({

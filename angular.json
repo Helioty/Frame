@@ -34,6 +34,10 @@
             ],
             "styles": [
               {
+                "input": "src/theme/common.scss",
+                "inject": true
+              },
+              {
                 "input": "src/theme/variables.scss",
                 "inject": true
               },

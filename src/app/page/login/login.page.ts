@@ -22,12 +22,12 @@ export class LoginPage implements OnInit {
   public emFoco = false;
 
   constructor(
-    private appConfig: AppConfigService,
-    private auth: AuthService,
-    private common: CommonService,
-    private menu: MenuController,
-    private platform: Platform,
-    private navControl: NavController
+    private readonly appConfig: AppConfigService,
+    private readonly auth: AuthService,
+    private readonly common: CommonService,
+    private readonly menu: MenuController,
+    private readonly platform: Platform,
+    private readonly navControl: NavController
   ) {
     if (environment.production) {
       this.loginData.login = '';
@@ -47,11 +47,9 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter(): void {
     this.menu.enable(false);
-    this.common.goToFullScreen();
   }
 
   ionViewDidEnter(): void {
-    this.common.goToFullScreen();
     this.appConfig.getURL().finally(() => {
       this.disableLoginBtn = false;
     });

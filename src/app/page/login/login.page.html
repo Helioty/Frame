@@ -59,6 +59,7 @@
                 color="light"
                 placeholder="Login"
                 class="ion-text-uppercase"
+                appScrollOnFocus
                 (keyup.enter)="inputS.setFocus()"
                 [ngModel]="loginData.login"
                 (ionFocus)="inFoco(true)"
@@ -80,6 +81,7 @@
                 placeholder="Senha"
                 class="ion-text-uppercase"
                 #inputS
+                appScrollOnFocus
                 [ngModel]="loginData.senha"
                 (ionFocus)="inFoco(true)"
                 (ionBlur)="inFoco(false)"
@@ -97,6 +99,9 @@
                 errorMessage="Preencha todos os campos!"
                 [colorWhite]="true"
               ></app-form-error> -->
+              <!-- <input type="text" appScrollOnFocus> -->
+              <ion-button routerLink="/home">Home</ion-button>
+              <!-- <ion-button (click)="hide()">Hide</ion-button> -->
             </ion-col>
           </ion-row>
 

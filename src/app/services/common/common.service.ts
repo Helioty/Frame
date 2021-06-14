@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
-import { App, AppInfo } from '@capacitor/app';
+import { App } from '@capacitor/app';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
+import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
 import {
   AlertController,
   LoadingController,
   Platform,
   ToastController,
 } from '@ionic/angular';
-import { ScannerService } from '../scanner/scanner.service';
+import { ScannerService } from 'src/app/services/scanner/scanner.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommonService {
   public loading: HTMLIonLoadingElement;
-  private appInfo: AppInfo;
+  private appName = 'Frame';
+  private version = '';
 
   constructor(
     private readonly scanner: ScannerService,
-    private toastCtrl: ToastController,
-    private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController,
-    private platform: Platform
+    private readonly toastCtrl: ToastController,
+    private readonly fullScreen: AndroidFullScreen,
+    private readonly loadingCtrl: LoadingController,
+    private readonly navigationBar: NavigationBar,
+    private readonly alertCtrl: AlertController,
+    private readonly platform: Platform
   ) {
     this.platform.ready().then(() => {
       this.getAppInfo();
@@ -32,15 +37,26 @@ export class CommonService {
    * @description Pega as informações basicas da aplicação.
    */
   async getAppInfo(): Promise<void> {
-    this.appInfo = await App.getInfo();
+    if (this.platform.is('capacitor')) {
+      const appInfo = await App.getInfo();
+      this.appName = appInfo.name;
+    }
   }
 
-  // Funções comuns
+  /**
+   * @author helio.souza
+   * @description Ativa o modo imersivo do Android.
+   */
   public goToFullScreen() {
     if (this.platform.is('cordova')) {
-      // this.androidFullScreen.isImmersiveModeSupported()
-      //   .then(() => this.androidFullScreen.immersiveMode())
-      //   .catch(err => console.log(err));
+      this.fullScreen
+        .isImmersiveModeSupported()
+        .then(() => {
+          const autoHide: boolean = true;
+          this.navigationBar.setUp(autoHide);
+          this.fullScreen.immersiveMode();
+        })
+        .catch((err) => console.log(err));
     }
   }
 
@@ -49,8 +65,8 @@ export class CommonService {
    * @description Exibe um IonAlert com a versão instalada.
    */
   async showVersion(): Promise<void> {
-    const V = 'Versão: ' + this.appInfo.version;
-    await this.showAlert(this.appInfo.name, V);
+    const V = 'Versão: ' + this.version;
+    await this.showAlert(this.appName, V);
   }
 
   /**
@@ -135,7 +151,7 @@ export class CommonService {
     this.scanner.focusPause();
     const alert = await this.alertCtrl.create({
       header: titulo,
-      subHeader: this.appInfo.name + (` - ${this.appInfo.version}`),
+      subHeader: this.appName + this.version ? ` - ${this.version}` : '',
       message: erro,
       buttons: ['FECHAR'],
       cssClass: 'alertError',
