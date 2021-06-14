@@ -40,6 +40,7 @@ export class CommonService {
     if (this.platform.is('capacitor')) {
       const appInfo = await App.getInfo();
       this.appName = appInfo.name;
+      this.version = appInfo.version;
     }
   }
 
