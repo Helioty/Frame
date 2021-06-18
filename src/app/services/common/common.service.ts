@@ -15,8 +15,8 @@ import { ScannerService } from 'src/app/services/scanner/scanner.service';
 })
 export class CommonService {
   public loading: HTMLIonLoadingElement;
-  private appName = 'Frame';
-  private version = '';
+  public appName = 'Frame';
+  public version = '';
 
   constructor(
     private readonly scanner: ScannerService,

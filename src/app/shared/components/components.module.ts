@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { MenuComponent } from './menu/menu.component';
+import { FormErrorComponent } from './form-error/form-error.component';
 
 @NgModule({
-  declarations: [MenuComponent],
+  declarations: [MenuComponent, FormErrorComponent],
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
-  exports: [MenuComponent],
+  exports: [MenuComponent, FormErrorComponent],
 })
 export class ComponentsModule {}

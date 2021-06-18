@@ -2,8 +2,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { API_URL, ENV } from 'src/app/config/app.config.service';
-import { AuthGuard } from 'src/app/shared/guards/auth/auth.guard';
 import { BaseService } from 'src/app/services/http/base.service';
+import { AuthGuard } from 'src/app/shared/guards/auth/auth.guard';
 import { CommonService } from '../common/common.service';
 import { ScannerService } from '../scanner/scanner.service';
 import { IAuth } from './auth.interface';
@@ -61,7 +61,8 @@ export class AuthService {
       this.scanner.focusOff();
       this.navControl.navigateRoot(['login']);
     };
-    this.common.showAlertAction('Logout', 'Deseja sair?', handler);
+    const props = { titulo: 'Logout', message: 'Deseja sair?', handler };
+    this.common.showAlertAction(props);
   }
 
   /**

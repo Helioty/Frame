@@ -21,7 +21,9 @@
       </ion-col>
 
       <ion-col size="12">
-        <ion-row class="ion-justify-content-center"> Now in Angular 12. </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-label color="light"> {{ appName }} </ion-label>
+        </ion-row>
       </ion-col>
     </ion-row>
 
@@ -57,7 +59,6 @@
                 color="light"
                 placeholder="Login"
                 class="ion-text-uppercase"
-                appScrollOnFocus
                 (keyup.enter)="inputS.setFocus()"
                 [ngModel]="loginData.login"
                 (ionFocus)="inFoco(true)"
@@ -79,7 +80,6 @@
                 placeholder="Senha"
                 class="ion-text-uppercase"
                 #inputS
-                appScrollOnFocus
                 [ngModel]="loginData.senha"
                 (ionFocus)="inFoco(true)"
                 (ionBlur)="inFoco(false)"
@@ -92,14 +92,11 @@
 
           <ion-row>
             <ion-col class="ion-no-padding">
-              <!-- <app-form-error
+              <app-form-error
                 [showError]="!f.valid"
                 errorMessage="Preencha todos os campos!"
                 [colorWhite]="true"
-              ></app-form-error> -->
-              <!-- <input type="text" appScrollOnFocus> -->
-              <ion-button routerLink="/home">Home</ion-button>
-              <!-- <ion-button (click)="hide()">Hide</ion-button> -->
+              ></app-form-error>
             </ion-col>
           </ion-row>
 

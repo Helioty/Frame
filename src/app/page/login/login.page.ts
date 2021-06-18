@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, NavController, Platform } from '@ionic/angular';
+import { isPlatform, MenuController, NavController } from '@ionic/angular';
 import { AppConfigService } from 'src/app/config/app.config.service';
 import { IAuth } from 'src/app/services/auth/auth.interface';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -21,14 +21,18 @@ export class LoginPage implements OnInit {
   public disableLoginBtn = true;
   public emFoco = false;
 
+  public appName = '';
+
   constructor(
     private readonly appConfig: AppConfigService,
     private readonly auth: AuthService,
     private readonly common: CommonService,
     private readonly menu: MenuController,
-    private readonly platform: Platform,
     private readonly navControl: NavController
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    console.log('Login OnInit');
     if (environment.production) {
       this.loginData.login = '';
       this.loginData.senha = '';
@@ -37,19 +41,18 @@ export class LoginPage implements OnInit {
       this.loginData.login = 'R6543MRM';
       this.loginData.senha = 'r6543mrm';
     }
-  }
-
-  ngOnInit(): void {
-    console.log('Login OnInit');
     const loginData = this.auth.getLoginInfo();
     this.restoreLoginData(loginData);
   }
 
   ionViewWillEnter(): void {
     this.menu.enable(false);
+    this.common.goToFullScreen();
+    this.appName = this.common.appName;
   }
 
   ionViewDidEnter(): void {
+    this.common.goToFullScreen();
     this.appConfig.getURL().finally(() => {
       this.disableLoginBtn = false;
     });
@@ -102,9 +105,9 @@ export class LoginPage implements OnInit {
       this.usuarioLogado = loginData.nomeDisplay;
       this.loginData.login = loginData.login + loginData.iniciais;
       this.foto = loginData.foto;
-      if (loginData.foto !== 'null' && loginData.foto !== undefined) {
-        this.noPhoto = false;
-      }
+    }
+    if (loginData && loginData.foto && loginData.foto !== 'null') {
+      this.noPhoto = false;
     }
   }
 
@@ -113,7 +116,7 @@ export class LoginPage implements OnInit {
    * @param status boolean.
    */
   inFoco(status: boolean): void {
-    if (this.platform.is('ios') || this.platform.is('android')) {
+    if (isPlatform('android') || isPlatform('ios')) {
       this.emFoco = status;
     }
   }
