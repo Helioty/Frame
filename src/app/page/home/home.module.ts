@@ -10,8 +10,8 @@ import { HomePage } from './home.page';
 const routes: Routes = [
   {
     path: '',
-    component: HomePage
-  }
+    component: HomePage,
+  },
 ];
 
 @NgModule({
@@ -20,8 +20,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
 })
 export class HomePageModule {}

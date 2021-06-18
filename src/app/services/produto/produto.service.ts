@@ -5,7 +5,7 @@ import { CommonService } from 'src/app/services/common/common.service';
 import { API_URL, ENV } from 'src/app/config/app.config.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProdutoService {
   constructor(
@@ -13,7 +13,7 @@ export class ProdutoService {
     private http: BaseService,
     private common: CommonService,
     private navControl: NavController
-  ) { }
+  ) {}
 
   // // by Ryuge 18/09/2018
   // // edit by Helio 19/03/2020

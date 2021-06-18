@@ -27,15 +27,15 @@ console.log(environment.production ? 'Production' : 'Development');
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ComponentsModule,
     ServicesModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     AppConfigService,
     AndroidFullScreen,
     NavigationBar,
     Geolocation,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

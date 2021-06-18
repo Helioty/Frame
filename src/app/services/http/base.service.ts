@@ -26,12 +26,10 @@ export class BaseService {
     options = { token: true, showError: true },
     headers?: HttpHeaders
   ): Observable<T> {
-    if (options.token) {
-      if (headers) {
-        headers.set('x-auth-token', localStorage.getItem('token'));
-      } else {
-        headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
-      }
+    if (options.token && headers) {
+      headers.set('x-auth-token', localStorage.getItem('token'));
+    } else if (options.token) {
+      headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
     }
     return this.http.get<T>(url, { headers }).pipe(
       catchError((err) => {
@@ -53,19 +51,16 @@ export class BaseService {
    * @returns Observable T type.
    */
   post<T, B>(
-    url: string,
-    body: B,
+    prop: { url: string; body: B },
     options = { token: true, showError: true },
     headers?: HttpHeaders
   ): Observable<T> {
-    if (options.token) {
-      if (headers) {
-        headers.set('x-auth-token', localStorage.getItem('token'));
-      } else {
-        headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
-      }
+    if (options.token && headers) {
+      headers.set('x-auth-token', localStorage.getItem('token'));
+    } else if (options.token) {
+      headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
     }
-    return this.http.post<T>(url, body, { headers }).pipe(
+    return this.http.post<T>(prop.url, prop.body, { headers }).pipe(
       catchError((err) => {
         if (options.showError) {
           this.showError(err);
@@ -85,19 +80,16 @@ export class BaseService {
    * @returns Observable T type.
    */
   put<T, B>(
-    url: string,
-    body: B,
+    prop: { url: string; body: B },
     options = { token: true, showError: true },
     headers?: HttpHeaders
   ): Observable<T> {
-    if (options.token) {
-      if (headers) {
-        headers.set('x-auth-token', localStorage.getItem('token'));
-      } else {
-        headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
-      }
+    if (options.token && headers) {
+      headers.set('x-auth-token', localStorage.getItem('token'));
+    } else if (options.token) {
+      headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
     }
-    return this.http.put<T>(url, body, { headers }).pipe(
+    return this.http.put<T>(prop.url, prop.body, { headers }).pipe(
       catchError((err) => {
         if (options.showError) {
           this.showError(err);
@@ -120,12 +112,10 @@ export class BaseService {
     options = { token: true, showError: true },
     headers?: HttpHeaders
   ): Observable<T> {
-    if (options.token) {
-      if (headers) {
-        headers.set('x-auth-token', localStorage.getItem('token'));
-      } else {
-        headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
-      }
+    if (options.token && headers) {
+      headers.set('x-auth-token', localStorage.getItem('token'));
+    } else if (options.token) {
+      headers = new HttpHeaders().set('x-auth-token', localStorage.getItem('token'));
     }
     return this.http.delete<T>(url, { headers }).pipe(
       catchError((err) => {

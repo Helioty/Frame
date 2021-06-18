@@ -6,22 +6,26 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'login',
-    loadChildren: () => import('./page/login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () =>
+      import('./page/login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'home',
-    loadChildren: () => import('./page/home/home.module').then(m => m.HomePageModule)
-  }
+    loadChildren: () => import('./page/home/home.module').then((m) => m.HomePageModule),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+      relativeLinkResolution: 'legacy',
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

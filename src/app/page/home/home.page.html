@@ -4,11 +4,16 @@
       <ion-back-button></ion-back-button>
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    
+
     <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <input hideKeyboard class="scanner" [(ngModel)]="scanner.valorScanner" (keyup.enter)="scaneado($event.target.value)">
+  <input
+    hideKeyboard
+    class="scanner"
+    [(ngModel)]="scanner.valorScanner"
+    (keyup.enter)="scaneado($event.target.value)"
+  />
 </ion-content>

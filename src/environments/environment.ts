@@ -4,7 +4,7 @@
 
 export const environment = {
   urlService: 'https://publico.staging.imb/getUrlServiceOKD',
-  production: false
+  production: false,
 };
 
 /*

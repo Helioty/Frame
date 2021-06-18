@@ -53,7 +53,7 @@ export class CommonService {
       this.fullScreen
         .isImmersiveModeSupported()
         .then(() => {
-          const autoHide: boolean = true;
+          const autoHide = true;
           this.navigationBar.setUp(autoHide);
           this.fullScreen.immersiveMode();
         })
@@ -172,43 +172,58 @@ export class CommonService {
    * @param allowClose Controla o dismiss do IonAlert. Default: true.
    * @param showCancel Controla a exibição do botão cancelar. Default: true.
    * @param cssClasses Array de classes CSS para estilizar o Alert.
+   * @param inputs Array de Inputs.
    */
   async showAlertAction(
-    titulo: string,
-    message: string,
-    handler: () => void,
-    allowClose = true,
-    showCancel = true,
-    cssClasses: string[] = []
+    base: { titulo: string; message: string; handler: (data: any) => any },
+    options = {
+      allowClose: true,
+      showCancel: true,
+      cssClasses: [''] || null,
+      inputs: [] || null,
+    }
   ): Promise<void> {
     this.scanner.focusPause();
     const buttons = [];
-
-    if (showCancel) {
-      buttons.push({
-        text: 'CANCELAR',
-        cssClass: ['alertButtonCenter'],
-        role: 'cancel',
-      });
+    if (options.showCancel) {
+      buttons.push(this.getCancelBtn());
     }
+    buttons.push(this.getConfirmaBtn(base.handler));
+    const alert = await this.alertCtrl.create({
+      backdropDismiss: options.allowClose,
+      cssClass: options?.cssClasses || [],
+      inputs: options?.inputs || [],
+      message: base.message,
+      header: base.titulo,
+      buttons,
+    });
+    alert.onWillDismiss().then(() => this.scanner.focusPlay());
+    await alert.present();
+  }
 
-    buttons.push({
+  /**
+   * @description Retorna AlertButton.
+   * @returns AlertButton.
+   */
+  getCancelBtn(): any {
+    return {
+      text: 'CANCELAR',
+      cssClass: ['alertButtonCenter'],
+      role: 'cancel',
+    };
+  }
+
+  /**
+   * @description Retorna um AlertButton com ação.
+   * @param handler Ação do botão.
+   * @returns AlertButton.
+   */
+  getConfirmaBtn(handler: (data: any) => any): any {
+    return {
       text: 'CONFIRMAR',
       cssClass: ['alertButtonFcGreen', 'alertButtonCenter'],
       handler,
-    });
-
-    const alert = await this.alertCtrl.create({
-      backdropDismiss: allowClose,
-      cssClass: cssClasses,
-      header: titulo,
-      message,
-      buttons,
-    });
-    alert.onWillDismiss().then(() => {
-      this.scanner.focusPlay();
-    });
-    await alert.present();
+    };
   }
 
   // formatação de string

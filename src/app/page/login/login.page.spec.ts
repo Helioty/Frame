@@ -7,13 +7,14 @@ describe('LoginPage', () => {
   let component: LoginPage;
   let fixture: ComponentFixture<LoginPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LoginPage ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [LoginPage],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginPage);
