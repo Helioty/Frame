@@ -1,0 +1,59 @@
+ion-header {
+    height: auto;
+    ion-toolbar {
+        --min-height: 52px !important;
+  
+        ion-buttons {
+            min-height: 40px !important;
+  
+            ion-button {
+                min-width: 48px !important;
+                min-height: 48px !important;
+                --overflow: visible !important;
+                --border-radius: 50% !important;
+                margin: 2px 4px;
+  
+                ion-icon {
+                    font-size: 200%;
+                }
+  
+                .badge-position {
+                    margin-left: 10px;
+                    margin-top: 8px;
+                    border-radius: 50%;
+                    position: absolute;
+                }
+            }
+        }
+    }
+}
+  
+// Diretivas CSS
+ion-searchbar[no-shadow] {
+    & input {
+        box-shadow: none !important;
+    }
+}
+  
+.alertError {
+    color: var(--ion-color-fc-button-green) !important;
+  
+    .alert-sub-title.sc-ion-alert-md {
+        font-weight: 600 !important;
+        font-size: 14px !important;
+    }
+}
+  
+.alertButtonFcGreen {
+    color: var(--ion-color-fc-button-green) !important;
+}
+  
+.alertButtonCenter {
+    margin: 0 !important;
+    width: 50% !important;
+  
+    span {
+        justify-content: center !important;
+    }
+}
+  

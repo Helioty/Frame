@@ -2,21 +2,9 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { Environment } from './environment.model';
-
 export const environment = {
-  production: false
-};
-
-export const ENV: Environment = {
-  mode: 'Development',
-  WS_AUTH: 'https://login.',
-  WS_PRODUTO: 'https://produto.',
-  WS_CRM: 'https://crm.',
-  WS_VENDAS: 'https://vendas.',
-  WS_PUBLIC: 'https://publico.',
-  WS_COMMONS: 'https://comum.',
-  WS_TMS: 'https://tms.'
+  urlService: 'https://publico.staging.imb/getUrlServiceOKD',
+  production: false,
 };
 
 /*
@@ -26,4 +14,4 @@ export const ENV: Environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

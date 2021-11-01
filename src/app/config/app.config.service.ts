@@ -1,55 +1,56 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ENV } from 'src/environments/environment';
-import { CommonService } from 'src/app/services/common/common.service';
+import { retry, take } from 'rxjs/operators';
+import { BaseService } from 'src/app/shared/services/http/base.service';
+import { environment } from 'src/environments/environment';
+import { IEnvironment } from './app.config.interface';
 
 export let API_URL = '';
 
-export function getHTTP(): any {
-  return API_URL;
-}
+export const ENV: IEnvironment = {
+  WS_AUTH: 'https://login.',
+  WS_VERSION: 'https://versao.',
+  WS_PRODUTO: 'https://produto.',
+  WS_CRM: 'https://crm.',
+  WS_VENDAS: 'https://vendas.',
+  WS_PUBLIC: 'https://publico.',
+  WS_COMMONS: 'https://comum.',
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppConfigService {
+  constructor(private readonly http: BaseService) {}
 
-  private getApiUrl = '';
-
-  constructor(
-    private http: HttpClient,
-    private common: CommonService,
-  ) {
-
-    if (ENV.mode === 'Production') {
-
-      this.getApiUrl = 'https://publico.api.imb/getUrlServiceOKD';
-      this.getURL();
-      getHTTP();
-
-    } else {
-
-      this.getApiUrl = 'https://publico.staging.imb/getUrlServiceOKD';
-      this.getURL();
-      getHTTP();
-
-    }
-
-  }
-
-  public getURL() {
-    const apiUrl = this.getApiUrl;
+  /**
+   * @author helio.souza
+   * @description Retorna um Promise com a API_URL utilizada na rede.
+   * @returns API_URL.
+   */
+  public getURL(): Promise<string> {
+    const apiUrl = environment.urlService;
+    const hasUrl = localStorage.getItem('API_URL') ? true : false;
+    const options = { token: false, showError: !hasUrl };
     return new Promise((resolve, reject) => {
-      this.http.get(apiUrl).subscribe((link: any) => {
-        console.log(link);
-        API_URL = link.server + '/';
-        resolve(link);
-      }, error => {
-        console.log(error);
-        this.common.showAlertError(JSON.stringify(error));
-        reject(error);
-      });
+      this.http
+        .get<{ server: string }>(apiUrl, options)
+        .pipe(take(1), retry(1))
+        .subscribe({
+          next: (response) => {
+            localStorage.setItem('API_URL', response.server + '/');
+            console.log('Conected to', response.server);
+            API_URL = response.server + '/';
+            resolve(API_URL);
+          },
+          error: (err) => {
+            if (hasUrl) {
+              API_URL = localStorage.getItem('API_URL') as string;
+              resolve(API_URL);
+            } else {
+              reject(err);
+            }
+          },
+        });
     });
   }
-
 }

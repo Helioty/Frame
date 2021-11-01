@@ -3,6 +3,9 @@
 
 /** Ionic CSS Variables **/
 :root {
+  /* Font da aplicação */
+  --ion-font-family: 'Barlow', sans-serif;
+
   /** primary **/
   --ion-color-primary: #C40318;
   --ion-color-primary-rgb: 196, 3, 24;
@@ -211,41 +214,3 @@
   --ion-color-shade: var(--ion-color-white-red-shade);
   --ion-color-tint: var(--ion-color-white-red-tint);
 }
-
-ion-header {
-  height: auto;
-  ion-toolbar {
-    --min-height: 52px !important;
-
-    ion-buttons {
-      min-height: 40px !important;
-
-      ion-button {
-        min-width: 48px !important;
-        min-height: 48px !important;
-        --overflow: visible !important;
-        --border-radius: 50% !important;
-        margin: 2px 4px;
-
-        ion-icon {
-          font-size: 200%;
-        }
-
-        .badge-position {
-          margin-left: 10px;
-          margin-top: 8px;
-          border-radius: 50%;
-          position: absolute;
-        }
-      }
-    }
-  }
-}
-
-// Diretivas CSS
-ion-searchbar[no-shadow] {
-	& input {
-		box-shadow: none !important;
-	}
-}
-

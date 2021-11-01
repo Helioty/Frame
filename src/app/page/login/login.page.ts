@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, Platform, NavController } from '@ionic/angular';
-import { Router } from '@angular/router';
-
-import { CommonService } from 'src/app/services/common/common.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
-
-import { ENV } from 'src/environments/environment';
+import { isPlatform, MenuController, NavController } from '@ionic/angular';
 import { AppConfigService } from 'src/app/config/app.config.service';
-import { AppComponent } from '../../app.component';
+import { IAuth } from 'src/app/shared/services/auth/auth.interface';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { CommonService } from 'src/app/shared/services/common/common.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,124 +12,112 @@ import { AppComponent } from '../../app.component';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  public isLoggedIn = false;
+  public usuarioLogado = '';
+  public noPhoto = true;
+  public foto = '';
 
-  public isLoggedIn: boolean;
-  public foto: any;
-  public usuarioLogado: any;
-  public noPhoto = false;
-
-  loginData = { login: '', senha: '' };
-  data: any;
-
+  public loginData = { login: '', senha: '' };
+  public disableLoginBtn = true;
   public emFoco = false;
 
-  constructor(
-    public appComponent: AppComponent,
-    public appConfig: AppConfigService,
-    public authService: AuthService,
-    public common: CommonService,
-    private menu: MenuController,
-    private platform: Platform,
-    private navControl: NavController,
-    private router: Router
-  ) {
+  public appName = '';
 
-    if (ENV.mode === 'Production') {
+  constructor(
+    private readonly appConfig: AppConfigService,
+    private readonly auth: AuthService,
+    private readonly common: CommonService,
+    private readonly menu: MenuController,
+    private readonly navControl: NavController
+  ) {}
+
+  ngOnInit(): void {
+    console.log('Login OnInit');
+    if (environment.production) {
       this.loginData.login = '';
       this.loginData.senha = '';
     } else {
-      this.common.showToast(ENV.mode);
+      this.common.showToast('Development');
       this.loginData.login = 'R6543MRM';
-      this.loginData.senha = 'R6543MRM';
+      this.loginData.senha = 'r6543mrm';
     }
-
-    if (localStorage.getItem('token')) {
-      this.isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'));
-      this.foto = localStorage.getItem('foto');
-      this.usuarioLogado = localStorage.getItem('nome');
-      this.loginData.login = localStorage.getItem('login');
-
-      if (localStorage.getItem('foto') === 'null') {
-        this.noPhoto = true;
-      }
-    }
+    const loginData = this.auth.getLoginInfo();
+    this.restoreLoginData(loginData);
   }
 
-  ngOnInit() {
-    console.log('ngOnInit');
-  }
-
-  ionViewWillEnter() {
+  ionViewWillEnter(): void {
     this.menu.enable(false);
     this.common.goToFullScreen();
+    this.appName = this.common.appName;
   }
 
-  ionViewDidEnter() {
+  ionViewDidEnter(): void {
     this.common.goToFullScreen();
+    this.appConfig.getURL().finally(() => {
+      this.disableLoginBtn = false;
+    });
   }
 
-  ionViewWillLeave() {
-
-  }
-
-  ionViewDidLeave() {
-
-  }
-
-  showVersion() {
+  /**
+   * @description Exibe um Alert com a versão instalada da aplicação.
+   */
+  showVersion(): void {
     this.common.showVersion();
   }
 
-  async entrar() {
+  /**
+   * @description Executa o serviço de Login.
+   */
+  async entrar(data: { login: string; senha: string }): Promise<void> {
     await this.common.showLoader();
-
-    this.authService.login(this.loginData.login.toUpperCase(), this.loginData.senha)
-      .then((result: any) => {
-        this.common.loading.dismiss();
-        this.data = result;
-        console.log('entrou aqui');
-
-        if (this.data.status === 'OK') {
-          this.common.showAlert(this.data.title, this.data.detail);
-        } else {
-
-          localStorage.setItem('token', this.data.authorization);
-          localStorage.setItem('login', this.loginData.login);
-          localStorage.setItem('foto', this.data.foto);
-          localStorage.setItem('empresa', this.data.empresa.id);
-          localStorage.setItem('nome', this.data.nomeDisplay);
-          localStorage.setItem('isLoggedIn', 'true');
-          localStorage.setItem('tms', this.data.empresa.usaFreteTMS);
-
-          if (localStorage.getItem('foto') === 'null') {
-            this.noPhoto = true;
-          }
-
-          this.appComponent.getStatus();
+    await this.auth
+      .login(data.login.toUpperCase(), data.senha)
+      .finally(async () => {
+        await this.common.loading.dismiss();
+      })
+      .then(
+        () => {
+          console.log('Logado!');
           this.navControl.navigateRoot('/home');
-          this.common.loading.dismiss();
+        },
+        () => {
+          this.isLoggedIn = false;
+          this.loginData.senha = '';
         }
-      }, (error: any) => {
-        console.log(error);
-        this.isLoggedIn = false;
-        this.common.loading.dismiss();
-        this.loginData.senha = '';
-      });
-
+      );
   }
 
-  logout() {
+  /**
+   * @description Altera a exibição da tela para o login completo.
+   */
+  logout(): void {
     this.isLoggedIn = false;
+    this.loginData.login = '';
+    this.loginData.senha = '';
+  }
 
-    if (localStorage.getItem('token')) {
-      localStorage.clear();
+  /**
+   * @description Restaura os dados do ultimo login.
+   */
+  private restoreLoginData(loginData: IAuth): void {
+    if (loginData) {
+      this.isLoggedIn = true;
+      this.usuarioLogado = loginData.nomeDisplay;
+      this.loginData.login = loginData.login + loginData.iniciais;
+      this.foto = loginData.foto;
+    }
+    if (loginData && loginData.foto && loginData.foto !== 'null') {
+      this.noPhoto = false;
     }
   }
 
-  inFoco() {
-    if (this.platform.is('ios') || this.platform.is('android')) {
-      this.emFoco = !this.emFoco;
+  /**
+   * @description Muda a exibição da tela quando em foco.
+   * @param status boolean.
+   */
+  inFoco(status: boolean): void {
+    if (isPlatform('android') || isPlatform('ios')) {
+      this.emFoco = status;
     }
   }
-
 }
