@@ -1,4 +1,4 @@
-package br.com.ferreiracosta.frame.angular;
+package com.helioty.ionic.angular.frame;
 
 import com.getcapacitor.BridgeActivity;
 

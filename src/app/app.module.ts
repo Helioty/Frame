@@ -4,8 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
-import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
+import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppConfigService } from 'src/app/config/app.config.service';
 import { environment } from '../environments/environment';
@@ -32,7 +31,7 @@ console.log(environment.production ? 'Production' : 'Development');
   providers: [
     AppConfigService,
     AndroidFullScreen,
-    NavigationBar,
+    // NavigationBar,
     Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

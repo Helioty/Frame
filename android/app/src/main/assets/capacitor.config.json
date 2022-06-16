@@ -3,6 +3,11 @@
 	"appName": "frame Angular",
 	"webDir": "www",
 	"bundledWebRuntime": false,
+	"plugins": {
+		"SplashScreen": {
+			"splashImmersive": true
+		}
+	},
 	"cordova": {
 		"preferences": {
 			"ScrollEnabled": "false",

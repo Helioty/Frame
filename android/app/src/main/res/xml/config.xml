@@ -6,10 +6,6 @@
     <param name="android-package" value="com.mesmotronic.plugins.FullScreenPlugin"/>
   </feature>
 
-  <feature name="NavigationBar">
-    <param name="android-package" value="com.cranberrygame.cordova.plugin.navigationbar.NavigationBar"/>
-  </feature>
-
   
   <preference name="ScrollEnabled" value="false" />
   <preference name="android-minSdkVersion" value="19" />

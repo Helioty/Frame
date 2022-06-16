@@ -5,6 +5,11 @@ const config: CapacitorConfig = {
   appName: 'frame Angular',
   webDir: 'www',
   bundledWebRuntime: false,
+  plugins: {
+    SplashScreen: {
+      splashImmersive: true,
+    },
+  },
   cordova: {
     preferences: {
       ScrollEnabled: 'false',
@@ -16,9 +21,9 @@ const config: CapacitorConfig = {
       SplashScreen: 'screen',
       SplashScreenDelay: '3000',
       resizeOnFullScreen: 'true',
-      orientation: 'portrait'
-    }
-  }
+      orientation: 'portrait',
+    },
+  },
 };
 
 export default config;

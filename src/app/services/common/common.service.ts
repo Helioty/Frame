@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { App } from '@capacitor/app';
-import { AndroidFullScreen } from '@ionic-native/android-full-screen/ngx';
-import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
+import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen/ngx';
+// import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
 import {
   AlertController,
   LoadingController,
@@ -23,7 +23,7 @@ export class CommonService {
     private readonly toastCtrl: ToastController,
     private readonly fullScreen: AndroidFullScreen,
     private readonly loadingCtrl: LoadingController,
-    private readonly navigationBar: NavigationBar,
+    // private readonly navigationBar: NavigationBar,
     private readonly alertCtrl: AlertController,
     private readonly platform: Platform
   ) {
@@ -38,9 +38,9 @@ export class CommonService {
    */
   async getAppInfo(): Promise<void> {
     if (this.platform.is('capacitor')) {
-      const appInfo = await App.getInfo();
-      this.appName = appInfo.name;
-      this.version = appInfo.version;
+      const { name, version } = await App.getInfo();
+      this.appName = name;
+      this.version = version;
     }
   }
 
@@ -54,7 +54,7 @@ export class CommonService {
         .isImmersiveModeSupported()
         .then(() => {
           const autoHide = true;
-          this.navigationBar.setUp(autoHide);
+          // this.navigationBar.setUp(autoHide);
           this.fullScreen.immersiveMode();
         })
         .catch((err) => console.log(err));
@@ -67,6 +67,7 @@ export class CommonService {
    */
   async showVersion(): Promise<void> {
     const V = 'Versão: ' + this.version;
+    this.goToFullScreen();
     await this.showAlert(this.appName, V);
   }
 
