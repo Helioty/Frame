@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { App } from '@capacitor/app';
 import { AndroidFullScreen } from '@awesome-cordova-plugins/android-full-screen/ngx';
-// import { NavigationBar } from '@ionic-native/navigation-bar/ngx';
+import { StatusBar } from '@capacitor/status-bar';
 import {
   AlertController,
   LoadingController,
@@ -23,7 +23,6 @@ export class CommonService {
     private readonly toastCtrl: ToastController,
     private readonly fullScreen: AndroidFullScreen,
     private readonly loadingCtrl: LoadingController,
-    // private readonly navigationBar: NavigationBar,
     private readonly alertCtrl: AlertController,
     private readonly platform: Platform
   ) {
@@ -49,13 +48,12 @@ export class CommonService {
    * @description Ativa o modo imersivo do Android.
    */
   public goToFullScreen() {
-    if (this.platform.is('cordova')) {
+    if (this.platform.is('android')) {
+      StatusBar.setOverlaysWebView({ overlay: true });
       this.fullScreen
         .isImmersiveModeSupported()
         .then(() => {
-          const autoHide = true;
-          // this.navigationBar.setUp(autoHide);
-          this.fullScreen.immersiveMode();
+          this.fullScreen.immersiveWidth();
         })
         .catch((err) => console.log(err));
     }

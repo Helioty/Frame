@@ -1,4 +1,4 @@
-export interface IAuth {
+export class IAuth {
   authorization: string;
   empresa: IEmpresa;
   foto: string;
@@ -12,7 +12,7 @@ export interface IAuth {
   status: string;
 }
 
-interface IEmpresa {
+export class IEmpresa {
   atualizarCadastroCliente: number;
   cnpj: string;
   fantasia: string;

@@ -21,5 +21,8 @@
 			"resizeOnFullScreen": "true",
 			"orientation": "portrait"
 		}
+	},
+	"server": {
+		"url": "http://192.168.1.109:8100"
 	}
 }

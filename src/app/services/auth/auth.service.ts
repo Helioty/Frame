@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { API_URL, ENV } from 'src/app/config/app.config.service';
 import { BaseService } from 'src/app/services/http/base.service';
 import { AuthGuard } from 'src/app/shared/guards/auth/auth.guard';
+import { environment } from 'src/environments/environment';
 import { CommonService } from '../common/common.service';
 import { ScannerService } from '../scanner/scanner.service';
 import { IAuth } from './auth.interface';
@@ -32,23 +33,31 @@ export class AuthService {
    * @returns Retorna uma Promise com o retorno do serviço.
    */
   login(login: string, senha: string): Promise<IAuth> {
-    const link = ENV.WS_AUTH + API_URL + 'loginMobile';
-    const options = { token: false, showError: true };
-    const headers = new HttpHeaders().set('login', login).set('senha', senha);
+    if (environment.production) {
+      const link = `${ENV.WS_AUTH}${API_URL}loginMobile`;
+      const options = { token: false, showError: true };
+      const headers = new HttpHeaders().set('login', login).set('senha', senha);
 
-    return new Promise((resolve, reject) => {
-      this.http.get<IAuth>(link, options, headers).subscribe({
-        next: (response) => {
-          this.setStorage(response, login);
-          this.authGuard.setStatus = true;
-          console.log(response);
-          resolve(response);
-        },
-        error: (err) => {
-          reject(err);
-        },
+      return new Promise((resolve, reject) => {
+        this.http.get<IAuth>(link, options, headers).subscribe({
+          next: (response) => {
+            this.setStorage(response, login);
+            this.authGuard.setStatus = true;
+            console.log(response);
+            resolve(response);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
       });
-    });
+    } else {
+      const fake = new IAuth();
+      // this.setStorage(fake, login);
+      this.authGuard.setStatus = true;
+      console.log(fake);
+      return Promise.resolve(fake);
+    }
   }
 
   /**

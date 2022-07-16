@@ -21,9 +21,6 @@ export class AppComponent {
    */
   private initializeApp(): void {
     this.platform.ready().then(() => {
-      // this.splashScreen.hide();
-      // this.statusBar.backgroundColorByHexString('#C40318');
-      // this.statusBar.hide();
       this.common.goToFullScreen();
       this.menu.enable(false);
     });

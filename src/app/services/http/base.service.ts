@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common/common.service';
+import { has } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -133,9 +134,9 @@ export class BaseService {
    */
   showError(error: HttpErrorResponse): void {
     console.log(error);
-    if (error.error && error.error.detail) {
+    if (has(error, 'error.detail')) {
       this.common.showAlertError('Atenção!', error.error.detail);
-    } else if (error.error.error && error.error.message && error.error.statusCode) {
+    } else if (has(error, 'error.error') && has(error, 'error.message')) {
       this.common.showAlertError(error.error.error, error.error.message);
     } else if (error.status === 0) {
       this.common.showAlertError(error.statusText, error.message);

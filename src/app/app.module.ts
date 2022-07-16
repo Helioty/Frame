@@ -31,7 +31,6 @@ console.log(environment.production ? 'Production' : 'Development');
   providers: [
     AppConfigService,
     AndroidFullScreen,
-    // NavigationBar,
     Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ScannerService {
   public valorScanner: string;
   public focusStatus = true;
-  private taskScanner: any;
+  private taskScanner: NodeJS.Timer;
 
   constructor() {}
 
